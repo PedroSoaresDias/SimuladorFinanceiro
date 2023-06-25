@@ -8,7 +8,10 @@ export default function JurosCompostos() {
     const [resultado, setResultado] = useState();
 
     function CalcularJurosCompostos() {
-        const juros = capital * (Math.pow(1 + (taxa / 100), periodo) - 1) + (aportes * (Math.pow(1 + taxa / 100, periodo)) / (taxa / 100));
+        const taxaJuros = taxa / 100;
+        const jurosMensais = taxaJuros / 12;
+
+        const juros = capital * (Math.pow(1 + jurosMensais, periodo) - 1) + (aportes * (Math.pow(1 + jurosMensais, periodo) - 1) / jurosMensais);
 
         const montante = capital + juros;
         setResultado(montante);
@@ -27,7 +30,7 @@ export default function JurosCompostos() {
             <br />
             <button onClick={CalcularJurosCompostos}>Calcular</button>
             {resultado > 0 && (<p>Capital inicial: R$ {capital.toFixed(2)}</p>)}
-            {resultado > 0 && (<p>Total de aportes: R$ {aportes * periodo}</p>)}
+            {resultado > 0 && (<p>Total investido: R$ {capital + (aportes * periodo)}</p>)}
             {resultado > 0 && (<p>O montante é: R$ {resultado.toFixed(2)}</p>)}
         </>
     )
