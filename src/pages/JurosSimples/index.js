@@ -22,9 +22,9 @@ export default function JurosSimples() {
             <input type="number" placeholder="Periodo (em anos)" value={periodo} onChange={(e) => setPeriodo(parseFloat(e.target.value))} />
             <br />
             <button onClick={CalcularJurosSimples}>Calcular</button>
-            {resultado > 0 && (<p>Capital inicial: R$ {capital.toFixed(2)}</p>)}
-            {resultado > 0 && (<p>Valor com juros: R$ {resultado - capital}</p>)}
-            {resultado > 0 && (<p>Montante total: R$ {resultado.toFixed(2)}</p>)}
+            {resultado > 0 && (<p>Capital inicial: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(capital))}</p>)}
+            {resultado > 0 && (<p>Valor com juros: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(resultado - capital))}</p>)}
+            {resultado > 0 && (<p>Montante total: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: "BRL"}).format(resultado))}</p>)}
         </>
     )
 }
