@@ -10,10 +10,11 @@ export default function JurosCompostos() {
     function CalcularJurosCompostos() {
         const taxaJurosMensal = taxaJurosAnual / 100 / 12;
 
-        const juros = capital * ((1 + taxaJurosMensal) ** periodo - 1) + (valorAporteMensal * ((1 + taxaJurosMensal) ** periodo - 1) / taxaJurosMensal);
+        const montante = capital * (1 + taxaJurosMensal) ** periodo
 
-        const montante = capital + juros;
-        setResultado(montante);
+        const montanteComAportesMensais = montante +  (valorAporteMensal * ((1 + taxaJurosMensal) ** periodo - 1)) / taxaJurosMensal;
+
+        setResultado(montanteComAportesMensais);
     }
 
     return (
@@ -28,9 +29,9 @@ export default function JurosCompostos() {
             <input type="number" placeholder="Período (em meses)" value={periodo} onChange={(e) => setPeriodo(parseFloat(e.target.value))} />
             <br />
             <button onClick={CalcularJurosCompostos}>Calcular</button>
-            {resultado > 0 && (<p>Capital inicial: R$ {capital.toFixed(2)}</p>)}
-            {resultado > 0 && (<p>Total investido: R$ {(capital + valorAporteMensal * periodo).toFixed(2)}</p>)}
-            {resultado > 0 && (<p>O montante é: R$ {resultado.toFixed(2)}</p>)}
+            {resultado > 0 && (<p>Capital inicial: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(capital))}</p>)}
+            {resultado > 0 && (<p>Total investido: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(capital + valorAporteMensal * periodo))}</p>)}
+            {resultado > 0 && (<p>O montante é: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(resultado))}</p>)}
         </>
     )
 }
