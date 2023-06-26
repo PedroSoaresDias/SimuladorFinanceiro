@@ -2,12 +2,12 @@ import { useState } from "react";
 
 export default function JurosSimples() {
     const [capital, setCapital] = useState();
-    const [taxa, setTaxa] = useState();
+    const [taxaJurosAnual, setTaxaJurosAnual] = useState();
     const [periodo, setPeriodo] = useState();
     const [resultado, setResultado] = useState();
 
     function CalcularJurosSimples() {
-        const juros = capital * (taxa / 100) * periodo;
+        const juros = capital * (taxaJurosAnual / 100) * periodo;
         const montante = capital + juros;
         setResultado(montante);
     }
@@ -17,7 +17,7 @@ export default function JurosSimples() {
             <h1>Calculadora de Juros Simples</h1>
             <input type="number" placeholder="Capital inicial" value={capital} onChange={(e) => setCapital(parseFloat(e.target.value))} />
             <br />
-            <input type="number" placeholder="Taxa em (%)" value={taxa} onChange={(e) => setTaxa(parseFloat(e.target.value))} />
+            <input type="number" placeholder="Taxa em (%)" value={taxaJurosAnual} onChange={(e) => setTaxaJurosAnual(parseFloat(e.target.value))} />
             <br />
             <input type="number" placeholder="Periodo (em anos)" value={periodo} onChange={(e) => setPeriodo(parseFloat(e.target.value))} />
             <br />

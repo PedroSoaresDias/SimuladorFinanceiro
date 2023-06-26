@@ -25,6 +25,7 @@ export default function Navbar() {
             </Link>
             <Link className="nav-link" href={"/JurosCompostos"}>Juros Compostos</Link>
             <Link className="nav-link" href={"/JurosSimples"}>Juros Simples</Link>
+            <Link className="nav-link" href={"/Financiamento"}>Financiamento</Link>
           </div>
         </div>
       </div>
