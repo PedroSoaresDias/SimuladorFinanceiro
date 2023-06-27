@@ -24,7 +24,8 @@ export default function Financiamento() {
             <input type="number" placeholder="Prazo de pagamento" value={prazoPagamento} onChange={(e) => setPrazoPagamento(parseFloat(e.target.value))} />
             <br />
             <button onClick={CalcularFinanciamento}>Calcular</button>
-            {valorParcela > 0 && (<p>Valor da parcela é: {(new Intl.NumberFormat("pt-BR", { style: 'currency', currency: 'BRL'}).format(valorParcela))}</p>)}
+            {valorParcela > 0 && (<p>Valor da parcela é: {(new Intl.NumberFormat("pt-BR", { style: 'currency', currency: 'BRL' }).format(valorParcela))}</p>)}
+            {valorParcela > 0 && (<p>Valor total é: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(valorParcela * prazoPagamento))}</p>)}
         </>
     )
 }

@@ -7,12 +7,15 @@ export default function JurosCompostos() {
     const [periodo, setPeriodo] = useState("");
     const [resultado, setResultado] = useState("");
 
+    function taxaEquivalente(taxaJurosAnual) {
+        const taxaJurosMensal = Math.pow(1 + (taxaJurosAnual / 100), 1 / 12) - 1;
+        return taxaJurosMensal;
+    }
+
     function CalcularJurosCompostos() {
-        const taxaJurosMensal = taxaJurosAnual / 100 / 12;
+        const montante = capital * (1 + taxaEquivalente(taxaJurosAnual)) ** periodo
 
-        const montante = capital * (1 + taxaJurosMensal) ** periodo
-
-        const montanteComAportesMensais = montante +  (valorAporteMensal * ((1 + taxaJurosMensal) ** periodo - 1)) / taxaJurosMensal;
+        const montanteComAportesMensais = montante +  (valorAporteMensal * ((1 + taxaEquivalente(taxaJurosAnual)) ** periodo - 1)) / taxaEquivalente(taxaJurosAnual);
 
         setResultado(montanteComAportesMensais);
     }
