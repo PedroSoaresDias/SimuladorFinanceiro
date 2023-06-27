@@ -22,7 +22,8 @@ export default function JurosCompostos() {
 
     return (
         <>
-            <h1>Calculadora de Juros Compostos</h1>
+            <h2>Calculadora de Juros Compostos</h2>
+            <br />
             <input type="number" placeholder="Capital" value={capital} onChange={(e) => setCapital(parseFloat(e.target.value))} />
             <br />
             <input type="number" placeholder="aportes mensais" value={valorAporteMensal} onChange={(e) => setValorAporteMensal(parseFloat(e.target.value))} />

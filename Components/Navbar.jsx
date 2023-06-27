@@ -4,9 +4,9 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
+        <div>
+          <h4 className="text-dark">Simualdor financeiro</h4>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -23,9 +23,32 @@ export default function Navbar() {
             <Link className="nav-link" aria-current="page" href={"/"}>
               Inicio
             </Link>
-            <Link className="nav-link" href={"/JurosCompostos"}>Juros Compostos</Link>
-            <Link className="nav-link" href={"/JurosSimples"}>Juros Simples</Link>
-            <Link className="nav-link" href={"/Financiamento"}>Financiamento</Link>
+            <li className="nav-item dropdown">
+              <Link
+                className="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Calculadora de Juros
+              </Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link className="dropdown-item" href={"/JurosCompostos"}>
+                    Juros Compostos
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" href={"/JurosSimples"}>
+                    Juros Simples
+                  </Link>
+                </li>
+              </ul>
+            </li>
+            <Link className="nav-link" href={"/Financiamento"}>
+              Financiamento
+            </Link>
           </div>
         </div>
       </div>

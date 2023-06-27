@@ -14,7 +14,8 @@ export default function JurosSimples() {
 
     return (
         <>
-            <h1>Calculadora de Juros Simples</h1>
+            <h2>Calculadora de Juros Simples</h2>
+            <br />
             <input type="number" placeholder="Capital inicial" value={capital} onChange={(e) => setCapital(parseFloat(e.target.value))} />
             <br />
             <input type="number" placeholder="Taxa em (%)" value={taxaJurosAnual} onChange={(e) => setTaxaJurosAnual(parseFloat(e.target.value))} />
