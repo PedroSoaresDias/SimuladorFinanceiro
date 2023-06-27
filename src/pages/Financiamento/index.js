@@ -6,11 +6,42 @@ export default function Financiamento() {
     const [prazoPagamento, setPrazoPagamento] = useState("");
     const [taxaJurosAnual, setTaxaJurosAnual] = useState("");
 
-    function CalcularFinanciamento() {
-        const jurosDecimal = taxaJurosAnual / 100;
+    function TaxaEquivalente(taxaJurosAnual) {
+        const taxaJurosMensal = Math.pow(1 + (taxaJurosAnual / 100), 1 / 12) - 1;
 
-        const parcela = emprestimo / prazoPagamento + (emprestimo - (prazoPagamento - 1)) * (jurosDecimal / prazoPagamento);
-        setValorParcela(parcela)
+        return taxaJurosMensal;
+    }
+
+    function CalcularAmortizacaoMensal() {
+        const amortizacao = emprestimo / prazoPagamento;
+
+        return amortizacao;
+    }
+
+    function CalcularJurosMensais() {
+        const jurosMensais = emprestimo * TaxaEquivalente(taxaJurosAnual);
+
+        return jurosMensais;
+    }
+
+    function CalcularSaldoDevedor() {
+        const saldoDevedor = emprestimo - CalcularAmortizacaoMensal();
+
+        return saldoDevedor;
+    }
+
+    function CalcularJurosProximoMes() {
+        const proximoMes = CalcularSaldoDevedor() * CalcularAmortizacaoMensal();
+
+        return proximoMes;
+    }
+
+    function CalcularParcelaMensal() {
+        // const jurosDecimal = taxaJurosAnual / 100;
+
+        const parcela = CalcularAmortizacaoMensal() + CalcularJurosMensais();
+        // setValorParcela(parcela)
+        return parcela;
     }
 
     return (
