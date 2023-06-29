@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function Financiamento() {
     const [emprestimo, setEmprestimo] = useState("");
     const [valorParcela, setValorParcela] = useState("");
-    const [prazoPagamento, setPrazoPagamento] = useState("");
+    const [prazoPagamento, setprazoPagamento] = useState("");
     const [taxaJurosAnual, setTaxaJurosAnual] = useState("");
 
     function TaxaEquivalente(taxaJurosAnual) {
@@ -18,30 +18,45 @@ export default function Financiamento() {
         return amortizacao;
     }
 
-    function CalcularJurosMensais() {
-        const jurosMensais = emprestimo * TaxaEquivalente(taxaJurosAnual);
+    // function CalcularJurosMensais() {
+    //     const jurosMensais = emprestimo * TaxaEquivalente(taxaJurosAnual);
 
-        return jurosMensais;
-    }
+    //     return jurosMensais;
+    // }
 
-    function CalcularSaldoDevedor() {
-        const saldoDevedor = emprestimo - CalcularAmortizacaoMensal();
+    // function CalcularSaldoDevedor() {
+    //     let saldoDevedor = emprestimo - CalcularAmortizacaoMensal();
 
-        return saldoDevedor;
-    }
+    //     return saldoDevedor;
+    // }
 
-    function CalcularJurosProximoMes() {
-        const proximoMes = CalcularSaldoDevedor() * CalcularAmortizacaoMensal();
+    // function CalcularJurosProximoMes() {
+    //     let proximoMes = CalcularSaldoDevedor() * CalcularAmortizacaoMensal();
 
-        return proximoMes;
-    }
+    //     return proximoMes;
+    // }
 
-    function CalcularParcelaMensal() {
-        // const jurosDecimal = taxaJurosAnual / 100;
+    // function CalcularParcelaMensal() {
+    //     let parcela = CalcularAmortizacaoMensal() + CalcularJurosMensais();
+    //     return parcela;
+    // }
 
-        const parcela = CalcularAmortizacaoMensal() + CalcularJurosMensais();
+    function CalcularFinanciamento() {
+        // const parcela = (emprestimo * TaxaEquivalente(taxaJurosAnual)) / (1 - Math.pow(1 + TaxaEquivalente(taxaJurosAnual), -prazoPagamento))
+
         // setValorParcela(parcela)
-        return parcela;
+        let saldoDevedor = emprestimo;
+        let parcelasCalculadas = [];
+
+        for (let i = 1; i <= prazoPagamento; i++){
+            const jurosMensais = saldoDevedor * TaxaEquivalente(taxaJurosAnual);
+            const parcela = CalcularAmortizacaoMensal() + jurosMensais;
+
+            saldoDevedor -= CalcularAmortizacaoMensal();
+            parcelasCalculadas.push(parcela);
+        }
+
+        setValorParcela(parcelasCalculadas)
     }
 
     return (
@@ -52,11 +67,23 @@ export default function Financiamento() {
             <br />
             <input type="number" placeholder="Taxa de juros ao ano" value={taxaJurosAnual} onChange={(e) => setTaxaJurosAnual(parseFloat(e.target.value))} />
             <br />
-            <input type="number" placeholder="Prazo de pagamento" value={prazoPagamento} onChange={(e) => setPrazoPagamento(parseFloat(e.target.value))} />
+            <input type="number" placeholder="Prazo de pagamento" value={prazoPagamento} onChange={(e) => setprazoPagamento(parseFloat(e.target.value))} />
             <br />
             <button onClick={CalcularFinanciamento}>Calcular</button>
-            {valorParcela > 0 && (<p>Valor da parcela é: {(new Intl.NumberFormat("pt-BR", { style: 'currency', currency: 'BRL' }).format(valorParcela))}</p>)}
-            {valorParcela > 0 && (<p>Valor total é: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(valorParcela * prazoPagamento))}</p>)}
+            {/* {valorParcela > 0 && (<p>Valor da parcela é: {(new Intl.NumberFormat("pt-BR", { style: 'currency', currency: 'BRL' }).format(valorParcela))}</p>)}
+            {valorParcela > 0 && (<p>Valor total é: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(valorParcela * prazoPagamento))}</p>)} */}
+            {valorParcela.length > 0 && (
+                <div>
+                    <h4>Parcelas:</h4>
+                    <ul>
+                        {valorParcela.map((parcela, index) => (
+                            <li key={index}>
+                                Parcela {index + 1}: {new Intl.NumberFormat("pt-BR",{style: "currency", currency: "BRL"}).format(parcela)}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </>
     )
 }
