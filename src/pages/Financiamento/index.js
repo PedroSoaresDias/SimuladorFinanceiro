@@ -5,6 +5,7 @@ export default function Financiamento() {
     const [valorParcela, setValorParcela] = useState("");
     const [prazoPagamento, setprazoPagamento] = useState("");
     const [taxaJurosAnual, setTaxaJurosAnual] = useState("");
+    const [totalParcelas, setTotalParcelas] = useState("");
 
     function TaxaEquivalente(taxaJurosAnual) {
         const taxaJurosMensal = Math.pow(1 + (taxaJurosAnual / 100), 1 / 12) - 1;
@@ -57,6 +58,10 @@ export default function Financiamento() {
         }
 
         setValorParcela(parcelasCalculadas)
+
+        const somaParcelas = parcelasCalculadas.reduce((acumulador, parcelas) => acumulador + parcelas, 0);
+        
+        setTotalParcelas(somaParcelas.toFixed(2));
     }
 
     return (
@@ -84,6 +89,7 @@ export default function Financiamento() {
                     </ul>
                 </div>
             )}
+            {totalParcelas > 0 && (<p>Total: {new Intl.NumberFormat("pt-BR", {style:"currency", currency:"BRL"}).format(totalParcelas)}</p>)}
         </>
     )
 }
