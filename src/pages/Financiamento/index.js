@@ -19,33 +19,7 @@ export default function Financiamento() {
         return amortizacao;
     }
 
-    // function CalcularJurosMensais() {
-    //     const jurosMensais = emprestimo * TaxaEquivalente(taxaJurosAnual);
-
-    //     return jurosMensais;
-    // }
-
-    // function CalcularSaldoDevedor() {
-    //     let saldoDevedor = emprestimo - CalcularAmortizacaoMensal();
-
-    //     return saldoDevedor;
-    // }
-
-    // function CalcularJurosProximoMes() {
-    //     let proximoMes = CalcularSaldoDevedor() * CalcularAmortizacaoMensal();
-
-    //     return proximoMes;
-    // }
-
-    // function CalcularParcelaMensal() {
-    //     let parcela = CalcularAmortizacaoMensal() + CalcularJurosMensais();
-    //     return parcela;
-    // }
-
     function CalcularFinanciamento() {
-        // const parcela = (emprestimo * TaxaEquivalente(taxaJurosAnual)) / (1 - Math.pow(1 + TaxaEquivalente(taxaJurosAnual), -prazoPagamento))
-
-        // setValorParcela(parcela)
         let saldoDevedor = emprestimo;
         let parcelasCalculadas = [];
 
@@ -75,8 +49,6 @@ export default function Financiamento() {
             <input type="number" placeholder="Prazo de pagamento" value={prazoPagamento} onChange={(e) => setprazoPagamento(parseFloat(e.target.value))} />
             <br />
             <button onClick={CalcularFinanciamento}>Calcular</button>
-            {/* {valorParcela > 0 && (<p>Valor da parcela é: {(new Intl.NumberFormat("pt-BR", { style: 'currency', currency: 'BRL' }).format(valorParcela))}</p>)}
-            {valorParcela > 0 && (<p>Valor total é: {(new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(valorParcela * prazoPagamento))}</p>)} */}
             {valorParcela.length > 0 && (
                 <div>
                     <h4>Parcelas:</h4>
