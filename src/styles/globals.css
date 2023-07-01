@@ -10,7 +10,7 @@
 #nav-bar{
   display: flex;
   font-size: 1rem;
-  background-color: rgb(242, 242, 242);
+  background-color: rgb(213, 213, 213);
 }
 
 #nav-bar .link{
