@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav id="nav-bar" className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <div>
-          <h4 className="text-dark">Simualdor financeiro</h4>
+        <div className="logo">
+          <h4>Simualdor financeiro</h4>
         </div>
         <button
           className="navbar-toggler"
@@ -20,12 +20,12 @@ export default function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link className="nav-link" aria-current="page" href={"/"}>
+            <Link className="nav-link link" aria-current="page" href={"/"}>
               Inicio
             </Link>
             <li className="nav-item dropdown">
               <Link
-                className="nav-link dropdown-toggle"
+                className="nav-link link dropdown-toggle"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -35,18 +35,18 @@ export default function Navbar() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" href={"/JurosCompostos"}>
+                  <Link className="dropdown-item link" href={"/JurosCompostos"}>
                     Juros Compostos
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" href={"/JurosSimples"}>
+                  <Link className="dropdown-item link" href={"/JurosSimples"}>
                     Juros Simples
                   </Link>
                 </li>
               </ul>
             </li>
-            <Link className="nav-link" href={"/Financiamento"}>
+            <Link className="nav-link link" href={"/Financiamento"}>
               Financiamento
             </Link>
           </div>
