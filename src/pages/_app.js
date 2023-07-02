@@ -13,6 +13,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <title>Simulador Financeiro</title>
+        <meta name="description" content="Faça uma simulação de investimento como Juros Simples e Compostos, e financiamento tipo SAC" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
