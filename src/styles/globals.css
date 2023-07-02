@@ -14,7 +14,8 @@
 }
 
 .link{
-  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   font-weight: 600;
   color: black;
   transition: 0.6s;
