@@ -26,14 +26,14 @@ export default function JurosCompostos() {
 
   return (
     <>
-      <section className="composto container">
-        <div className="calcular">
-          <h2 className="text-center">Calculadora de Juros Compostos</h2>
+      <section className="composto">
+        <div className="container">
+          <h2 className="text-center text-dark">Calculadora de Juros Compostos</h2>
           <br />
           <div className="row">
             <div className="col-1"></div>
             <div className="col mb-3">
-              <label for="capital" className="form-label">
+              <label for="capital" className="form-label text-dark">
                 Capital inicial
               </label>
               <div className="input-group">
@@ -54,7 +54,7 @@ export default function JurosCompostos() {
           <div className="row">
             <div className="col-1"></div>
             <div className="col mb-3">
-              <label for="aporte" className="form-label">
+              <label for="aporte" className="form-label text-dark">
                 Aportes mensais
               </label>
               <div className="input-group">
@@ -67,8 +67,7 @@ export default function JurosCompostos() {
                   className="form-control"
                   value={valorAporteMensal}
                   onChange={(e) =>
-                    setValorAporteMensal(parseFloat(e.target.value))
-                  }
+                    setValorAporteMensal(parseFloat(e.target.value))}
                 />
               </div>
             </div>
@@ -77,7 +76,7 @@ export default function JurosCompostos() {
           <div className="row">
             <div className="col-1"></div>
             <div className="col mb-3">
-              <label for="juros" className="form-label">
+              <label for="juros" className="form-label text-dark">
                 Taxa de Juros
               </label>
               <div className="input-group">
@@ -87,8 +86,7 @@ export default function JurosCompostos() {
                   className="form-control"
                   value={taxaJurosAnual}
                   onChange={(e) =>
-                    setTaxaJurosAnual(parseFloat(e.target.value))
-                  }
+                  setTaxaJurosAnual(parseFloat(e.target.value))}
                 />
                 <span class="input-group-text" id="basic-addon3">
                   % ao ano
@@ -100,7 +98,7 @@ export default function JurosCompostos() {
           <div className="row">
             <div className="col-1"></div>
             <div className="col mb-3">
-              <label for="mes" className="form-label">
+              <label for="mes" className="form-label text-dark">
                 Período
               </label>
               <div className="input-group">
@@ -120,19 +118,19 @@ export default function JurosCompostos() {
           </div>
           <br />
           <div className="row">
-            <div className="col-1"></div>
+            <div className="col"></div>
             <button
               onClick={CalcularJurosCompostos}
-              className="btn btn-success col"
+              className="btn btn-success col-6"
             >
               Calcular
             </button>
-            <div className="col-1"></div>
+            <div className="col"></div>
           </div>
           <br />
           <div className="row">
             <div className="col-1"></div>
-            <div className="col text-center">
+            <div className="col text-center text-dark">
               {resultado > 0 && (
                 <p>
                   Capital inicial:{" "}

@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav id="nav-bar" className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav id="nav-bar" className="navbar navbar-expand-lg bg-body-tertiary text-start">
       <div className="container-fluid">
         <div className="logo">
-          <h4>Simualdor financeiro</h4>
+          <h4>FinSimulator</h4>
         </div>
         <button
           className="navbar-toggler"
@@ -23,7 +23,7 @@ export default function Navbar() {
             <Link className="nav-link link" aria-current="page" href={"/"}>
               Inicio
             </Link>
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown link">
               <Link
                 className="nav-link link dropdown-toggle"
                 href="#"
