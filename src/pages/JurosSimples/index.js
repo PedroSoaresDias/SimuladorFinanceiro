@@ -32,7 +32,6 @@ export default function JurosSimples() {
                   type="number"
                   id="capital"
 									className="form-control"
-                  placeholder="Capital inicial"
                   value={capital}
                   onChange={(e) => setCapital(parseFloat(e.target.value))}
                 />

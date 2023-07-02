@@ -58,6 +58,15 @@
   font-weight: 600;
 }
 
+.sac{
+  background-color: rgb(208, 208, 208);
+  padding: 1rem;
+}
+
+.sac h2, .sac label, .sac h4, .sac ul, .sac p{
+  font-weight: 600;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
