@@ -67,6 +67,18 @@
   font-weight: 600;
 }
 
+footer{
+  background-color: rgb(193, 193, 193);
+  padding: 1.3rem;
+}
+
+footer p{
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: center;
+  color: black;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
