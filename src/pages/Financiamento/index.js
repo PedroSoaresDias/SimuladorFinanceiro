@@ -129,45 +129,6 @@ export default function Financiamento() {
           <div className="row">
             <div className="col-1"></div>
             <div className="col text-center text-dark">
-              {/* <table className="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Nº</th>
-                    <th>Parcela</th>
-                    <th>Juros</th>
-                    <th>Amortização</th>
-                    <th>Saldo Devedor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>0</td>
-                    <td>{new Intl.NumberFormat("pt-BR", {style: 'currency', currency: "BRL"}).format(0)}</td>
-                    <td>{new Intl.NumberFormat("pt-BR", {style: 'currency', currency: "BRL"}).format(0)}</td>
-                    <td>{new Intl.NumberFormat("pt-BR", {style: 'currency', currency: "BRL"}).format(0)}</td>
-                    <td>{new Intl.NumberFormat("pt-BR", {style: 'currency', currency: "BRL"}).format(emprestimo)}</td>
-                  </tr>
-                  {valorParcela.length > 0 && (
-                    <tr>
-                      {valorParcela.map((index) => (
-                        <td>{index + 1}</td>
-                      ))}
-                      {valorParcela.map((parcela) => (
-                        <td>{new Intl.NumberFormat("pt-BR", {style: 'currency', currency: "BRL"}).format(parcela)}</td>
-                      ))}
-                      {valorParcela.map((parcelaJuros) => (
-                        <td>{new Intl.NumberFormat("pt-BR", {style: 'currency', currency: 'BRL'}).format(parcelaJuros - CalcularAmortizacaoMensal())}</td>
-                      ))}
-                      {valorParcela.map((amortizacao) => (
-                        <td>{new Intl.NumberFormat("pt-BR", {style: 'currency', currency: "BRL"}).format(amortizacao == CalcularAmortizacaoMensal())}</td>
-                      ))}
-                      {valorParcela.map((saldoDevedor) => (
-                        <td>{new Intl.NumberFormat("pt-BR", {style: 'currency', currency: "BRL"}).format(saldoDevedor -= emprestimo)}</td>
-                      ))}
-                    </tr>
-                  )}
-                </tbody>
-              </table> */}
               {valorParcela.length > 0 && (
                 <div>
                   <h4>Parcelas:</h4>
