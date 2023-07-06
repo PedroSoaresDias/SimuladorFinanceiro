@@ -51,7 +51,7 @@
   align-items: flex-start;
   gap: 0.625rem;
   padding-left: 3rem;
-  padding-right: 6rem;
+  padding-right: 5rem;
   transition: 0.7s;
 }
 
@@ -67,6 +67,26 @@
   font-size: 1.3rem;
   font-weight: normal;
   letter-spacing: 3px;
+}
+
+@media screen and (max-width: 500px){
+  #inicio h1{
+    font-size: 1.8rem;
+  }
+
+  #inicio p{
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 400px){
+  #inicio h1{
+    font-size: 1.5rem;
+  }
+
+  #inicio p{
+    font-size: 1rem;
+  }
 }
 
 .composto {
