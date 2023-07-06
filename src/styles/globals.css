@@ -104,6 +104,26 @@
   font-weight: 600;
 }
 
+@media screen and (max-width: 340px) {
+  .sac h4{
+    font-size: 1.2rem;
+  }
+
+  .sac ul{
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 300px){
+  .sac h4{
+    font-size: 1rem;
+  }
+
+  .sac ul{
+    font-size: 0.8rem;
+  }
+}
+
 footer {
   background-color: rgb(193, 193, 193);
   padding: 1.3rem;
