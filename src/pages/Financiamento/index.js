@@ -85,7 +85,7 @@ export default function Financiamento() {
                   }
                 />
                 <span class="input-group-text" id="basic-addon2">
-                  % ano
+                  % ao ano
                 </span>
               </div>
             </div>

@@ -28,7 +28,9 @@ export default function JurosCompostos() {
     <>
       <section className="composto">
         <div className="container">
-          <h2 className="text-center text-dark">Calculadora de Juros Compostos</h2>
+          <h2 className="text-center text-dark">
+            Calculadora de Juros Compostos
+          </h2>
           <br />
           <div className="row">
             <div className="col-1"></div>
@@ -67,7 +69,8 @@ export default function JurosCompostos() {
                   className="form-control"
                   value={valorAporteMensal}
                   onChange={(e) =>
-                    setValorAporteMensal(parseFloat(e.target.value))}
+                    setValorAporteMensal(parseFloat(e.target.value))
+                  }
                 />
               </div>
             </div>
@@ -86,7 +89,8 @@ export default function JurosCompostos() {
                   className="form-control"
                   value={taxaJurosAnual}
                   onChange={(e) =>
-                  setTaxaJurosAnual(parseFloat(e.target.value))}
+                    setTaxaJurosAnual(parseFloat(e.target.value))
+                  }
                 />
                 <span class="input-group-text" id="basic-addon3">
                   % ao ano
@@ -147,6 +151,17 @@ export default function JurosCompostos() {
                     style: "currency",
                     currency: "BRL",
                   }).format(capital + valorAporteMensal * periodo)}
+                </p>
+              )}
+              {resultado > 0 && (
+                <p>
+                  Total de Juros:{" "}
+                  {new Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(
+                    resultado - (capital + valorAporteMensal * periodo)
+                  )}
                 </p>
               )}
               {resultado > 0 && (
