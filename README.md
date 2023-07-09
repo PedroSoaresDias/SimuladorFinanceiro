@@ -2,7 +2,7 @@
 
 Faça simulações de Juros Simples, Juros Compostos e simulações de financiamento do tipo SAC.
 
-Acesse por esse link: <a href="simulador-financeiro.vercel.app">FinSimulator</a>
+Acesse por esse link: <a href="https://simulador-financeiro.vercel.app/" target="_blank">FinSimulator</a>
 
 <hr>
 
