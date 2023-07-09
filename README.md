@@ -69,7 +69,7 @@ Ela funciona da seguinte forma:
     <li>Pode definir o valor do financiamento.</li>
     <li>Pode definir o juros a ser calculado.</li>
     <li>Pode escolher o número de parcelas que deseja pagar.</li>
-    <li>>Quando calculado, as primeiras parcelas estaram com juros, e com ao longo do tempo os juros vão reduzindo, e no fim, paga o finaciamento com os juros acumulados.</li>
+    <li>Quando calculado, as primeiras parcelas estaram com juros, e com ao longo do tempo os juros vão reduzindo, e no fim, paga o finaciamento com os juros acumulados.</li>
 </ul>
 
 <span>Em relação com o calculo do financiamento do tipo SAC, foi criado para ser o mais preciso possível, é recomendado conversar com o gerente do banco ou instituição financeira de sua confiança para que possa te orientar sobre o financiamento.</span>
