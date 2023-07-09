@@ -157,6 +157,18 @@ export default function Financiamento() {
             </div>
             <div className="col-1"></div>
           </div>
+          <br />
+          <div className="row">
+            <div className="col-1"></div>
+            <div className="col">
+              <div className="card aviso">
+                <div className="card-body">
+                  <p><strong>Aviso:</strong> A simulação do financiamento SAC, foi desenvolvida para calcular esse tipo de financiamento da forma mais precisa possível, é recomendado consultar o gerente do banco ou da instituição financeira de sua confiança para que possa orientar sobre o financiamento.</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-1"></div>
+          </div>
         </div>
       </section>
     </>
