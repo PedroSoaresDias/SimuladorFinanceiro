@@ -89,9 +89,26 @@
   }
 }
 
+@media screen and (min-height: 768px) {
+  .composto{
+    height: 100vh;
+  }
+
+  .simples{
+    height: 100vh;
+  }
+
+  .sac{
+    height: 100vh;
+  }
+}
+
 .composto {
   background-color: rgb(208, 208, 208);
-  padding: 5rem 0;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .composto h2,
@@ -102,7 +119,10 @@
 
 .simples {
   background-color: rgb(208, 208, 208);
-  padding: 5rem 0;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .simples h2,
@@ -113,7 +133,10 @@
 
 .sac {
   background-color: rgb(208, 208, 208);
-  padding: 5rem 0;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sac .aviso{
