@@ -89,23 +89,9 @@
   }
 }
 
-@media screen and (min-height: 720px) {
-  .composto{
-    height: 100vh;
-  }
-
-  .simples{
-    height: 100vh;
-  }
-
-  .sac{
-    height: 100vh;
-  }
-}
-
 .composto {
   background-color: rgb(208, 208, 208);
-  padding: 2rem 0;
+  padding: 15rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,7 +105,7 @@
 
 .simples {
   background-color: rgb(208, 208, 208);
-  padding: 2rem 0;
+  padding: 15rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,7 +119,7 @@
 
 .sac {
   background-color: rgb(208, 208, 208);
-  padding: 2rem 0;
+  padding: 15rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
