@@ -89,7 +89,7 @@
   }
 }
 
-@media screen and (min-height: 768px) {
+@media screen and (min-height: 720px) {
   .composto{
     height: 100vh;
   }
