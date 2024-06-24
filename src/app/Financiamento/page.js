@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 
 export default function Financiamento() {
@@ -42,7 +44,6 @@ export default function Financiamento() {
   }
 
   return (
-    <>
       <section className="sac">
         <div className="container text-dark">
           <h2 className="text-center">Financiamento SAC</h2>
@@ -171,6 +172,5 @@ export default function Financiamento() {
           </div>
         </div>
       </section>
-    </>
   );
 }

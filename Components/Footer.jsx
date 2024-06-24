@@ -1,7 +1,9 @@
+"use client"
+
 export default function Footer() {
   return (
     <footer>
-      <p className="text-center">
+      <p>
         © {new Date().getFullYear} FinSimulator
       </p>
     </footer>
