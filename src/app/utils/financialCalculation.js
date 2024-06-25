@@ -12,3 +12,9 @@ export function calcularJurosCompostos(capital, taxaJurosAnual, valorAporteMensa
 
   return montanteComAportesMensais;
 }
+
+export function calcularJurosSimples(capital, taxaJurosAnual, periodo) {
+  const juros = capital * (taxaJurosAnual / 100) * periodo;
+  const montante = capital + juros;
+  return montante;
+}
