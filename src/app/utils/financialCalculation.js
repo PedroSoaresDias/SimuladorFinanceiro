@@ -1,6 +1,5 @@
 export function taxaEquivalente(taxaJurosAnual) {
-  const taxaJurosMensal = Math.pow(1 + taxaJurosAnual / 100, 1 / 12) - 1;
-  return taxaJurosMensal;
+  return Math.pow(1 + taxaJurosAnual / 100, 1 / 12) - 1;
 }
 
 export function calcularJurosCompostos(capital, taxaJurosAnual, valorAporteMensal, periodo) {
@@ -17,4 +16,29 @@ export function calcularJurosSimples(capital, taxaJurosAnual, periodo) {
   const juros = capital * (taxaJurosAnual / 100) * periodo;
   const montante = capital + juros;
   return montante;
+}
+
+export function calcularAmortizacaoMensal(emprestimo, prazoPagamento) {
+  return emprestimo / prazoPagamento;
+}
+
+export function calcularFinanciamento(emprestimo, taxaJurosAnual, prazoPagamento) {
+  const taxaMensal = taxaEquivalente(taxaJurosAnual);
+  let saldoDevedor = emprestimo;
+  let parcelasCalculadas = [];
+  const amortizacao = calcularAmortizacaoMensal(emprestimo, prazoPagamento);
+
+  for (let i = 1; i <= prazoPagamento; i++) {
+    const jurosMensais = saldoDevedor * taxaMensal;
+    const parcela = amortizacao + jurosMensais;
+    saldoDevedor -= amortizacao;
+    parcelasCalculadas.push(parcela);
+  }
+
+  const somaParcelas = parcelasCalculadas.reduce(
+    (acumulador, parcelas) => acumulador + parcelas,
+    0
+  );
+
+  return { parcelas: parcelasCalculadas, total: somaParcelas.toFixed(2) };
 }

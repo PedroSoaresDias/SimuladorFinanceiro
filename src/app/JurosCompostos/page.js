@@ -23,7 +23,7 @@ export default function JurosCompostos() {
         <br />
 
         <div className="d-flex justify-content-center">
-          <button className="btn btn-success" onClick={() => dispatch({ type: "CALCULAR_RESULTADO" })}>Calcular</button>
+          <button className="btn btn-success col-6" onClick={() => dispatch({ type: "CALCULAR_RESULTADO" })}>Calcular</button>
         </div>
 
         <br />
