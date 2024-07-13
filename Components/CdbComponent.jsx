@@ -4,6 +4,7 @@ import { useEffect, useReducer } from "react";
 import InputField from "./InputField";
 import ResultadoJurosCompostos from "./ResultadoJurosCompostos";
 import { initialState, cdbReducer } from "@/app/reducers/cdbReducer";
+import ResultadoCdb from "./ResultadoCdb";
 
 export default function CdbComponent({ taxaCdi }) {
   const [state, dispatch] = useReducer(cdbReducer, {
@@ -35,7 +36,13 @@ export default function CdbComponent({ taxaCdi }) {
 
         <br />
 
-        {state.resultado > 0 && <ResultadoJurosCompostos capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />}
+        {state.resultado > 0 && (
+          <div>
+            <ResultadoCdb capital={state.capitalInicial} aportes={state.aportesMensais} juros={state.juros} />
+            <br />
+            <ResultadoJurosCompostos capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
+          </div>
+        )}
       </div>
     </section >
   );

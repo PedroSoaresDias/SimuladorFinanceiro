@@ -5,7 +5,10 @@ export const initialState = {
   taxaJurosAnual: "",
   valorAporteMensal: "",
   periodo: "",
-  resultado: ""
+  resultado: "",
+  capitalInicial: 0,
+  aportesMensais: 0,
+  juros: 0
 };
 
 export function cdbReducer(state, action) {
@@ -19,8 +22,16 @@ export function cdbReducer(state, action) {
     case "SET_PERIODO":
       return { ...state, periodo: action.payload };
     case "CALCULAR_RESULTADO":
-      const resultado = calcularCdb(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo);
-      return { ...state, resultado };
+      const montanteTotal = calcularCdb(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo);
+      const totalAportes = state.valorAporteMensal * state.periodo;
+      const juros = montanteTotal - state.capital - totalAportes;
+      return {
+        ...state,
+        resultado: montanteTotal,
+        capitalInicial: state.capital,
+        aportesMensais: totalAportes,
+        juros
+      };
     default:
       return state;
   }
