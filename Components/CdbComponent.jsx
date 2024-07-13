@@ -1,12 +1,19 @@
 "use client"
 
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import InputField from "./InputField";
 import ResultadoJurosCompostos from "./ResultadoJurosCompostos";
-import { initialState, jurosCompostosReducer } from "@/app/reducers/jurosCompostosReducer";
+import { initialState, cdbReducer } from "@/app/reducers/cdbReducer";
 
 export default function CdbComponent({ taxaCdi }) {
-  const [state, dispatch] = useReducer(jurosCompostosReducer, initialState);
+  const [state, dispatch] = useReducer(cdbReducer, {
+    ...initialState,
+    taxaJurosAnual: parseFloat(taxaCdi.valor)
+  });
+
+  useEffect(() => {
+    dispatch({ type: "SET_TAXA_JUROS_ANUAL", payload: parseFloat(taxaCdi.valor) });
+  }, [taxaCdi])
 
   return (
     <section className="composto">
@@ -17,7 +24,7 @@ export default function CdbComponent({ taxaCdi }) {
         <br />
         <InputField label={"Capital inicial"} value={state.capital} onChange={e => dispatch({ type: "SET_CAPITAL", payload: parseFloat(e.target.value) })} prefix={"R$"} />
         <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={e => dispatch({ type: "SET_VALOR_APORTE_MENSAL", payload: parseFloat(e.target.value) })} prefix={"R$"} />
-        <InputField label={"Taxa de Juros"} defaultValue={taxaCdi?.valor} suffix={"% ao ano"} readOnly />
+        <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} suffix={"% ao ano"} readOnly />
         <InputField label={"Período"} value={state.periodo} onChange={e => dispatch({ type: "SET_PERIODO", payload: parseFloat(e.target.value) })} suffix={"meses"} />
 
         <br />
