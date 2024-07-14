@@ -23,9 +23,11 @@ export default function CdbComponent({ taxaCdi }) {
           Calculadora de CDB
         </h2>
         <br />
+        <p>Valor do CDI considerado {taxaCdi.valor}%</p>
+        <br />
         <InputField label={"Capital inicial"} value={state.capital} onChange={e => dispatch({ type: "SET_CAPITAL", payload: parseFloat(e.target.value) })} prefix={"R$"} />
         <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={e => dispatch({ type: "SET_VALOR_APORTE_MENSAL", payload: parseFloat(e.target.value) })} prefix={"R$"} />
-        <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} suffix={"% ao ano"} readOnly />
+        <InputField label={"Taxa de Juros"} value={state.porcentagemCdi} onChange={e => dispatch({ type: "SET_PORCENTAGEM_CDI", payload: parseFloat(e.target.value) })} suffix={"CDI"} />
         <InputField label={"Período"} value={state.periodo} onChange={e => dispatch({ type: "SET_PERIODO", payload: parseFloat(e.target.value) })} suffix={"meses"} />
 
         <br />
@@ -38,7 +40,7 @@ export default function CdbComponent({ taxaCdi }) {
 
         {state.resultado > 0 && (
           <div>
-            <ResultadoCdb capital={state.capitalInicial} aportes={state.aportesMensais} juros={state.juros} />
+            <ResultadoCdb totalInvestido={state.totalInvestido} juros={state.juros} />
             <br />
             <ResultadoJurosCompostos capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
           </div>

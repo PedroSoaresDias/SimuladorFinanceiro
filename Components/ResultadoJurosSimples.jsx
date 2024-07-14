@@ -1,10 +1,6 @@
+import { formatCurrency } from "@/app/utils/financialCalculation";
+
 export default function ResultadoJurosSimples({ capital, resultado }) {
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL"
-    }).format(value);
-  };
   return (
     <div className="text-center">
       <p>Capital inicial: {formatCurrency(capital)}</p>

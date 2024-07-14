@@ -1,13 +1,13 @@
-import { calcularCdb } from "../utils/financialCalculation";
+import { calcularCdbPosFixado } from "../utils/financialCalculation";
 
 export const initialState = {
   capital: "",
   taxaJurosAnual: "",
+  porcentagemCdi: "",
   valorAporteMensal: "",
   periodo: "",
   resultado: "",
-  capitalInicial: 0,
-  aportesMensais: 0,
+  totalInvestido: 0,
   juros: 0
 };
 
@@ -17,20 +17,21 @@ export function cdbReducer(state, action) {
       return { ...state, capital: action.payload };
     case "SET_TAXA_JUROS_ANUAL":
       return { ...state, taxaJurosAnual: action.payload };
+    case "SET_PORCENTAGEM_CDI":
+      return { ...state, porcentagemCdi: action.payload };
     case "SET_VALOR_APORTE_MENSAL":
       return { ...state, valorAporteMensal: action.payload };
     case "SET_PERIODO":
       return { ...state, periodo: action.payload };
     case "CALCULAR_RESULTADO":
-      const montanteTotal = calcularCdb(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo);
-      const totalAportes = state.valorAporteMensal * state.periodo;
-      const juros = montanteTotal - state.capital - totalAportes;
+      const montanteTotal = calcularCdbPosFixado(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo, state.porcentagemCdi);
+      const totalInvestido = (state.valorAporteMensal * state.periodo) + state.capital;
+      const juros = montanteTotal - totalInvestido;
       return {
         ...state,
         resultado: montanteTotal,
-        capitalInicial: state.capital,
-        aportesMensais: totalAportes,
-        juros
+        totalInvestido,
+        juros: juros.toFixed(2)
       };
     default:
       return state;

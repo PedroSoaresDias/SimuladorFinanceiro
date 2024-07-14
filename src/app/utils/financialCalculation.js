@@ -22,6 +22,25 @@ export function calcularCdb(capital, taxaJurosAnual, valorAporteMensal, periodo)
   return montanteComAportesMensais;
 }
 
+export function calcularCdbPosFixado(capital, taxaJurosAnual, valorAporteMensal, periodo, porcentagemCdi) {
+  const resultadoPorcentagemCdi = (porcentagemCdi / 100) * taxaJurosAnual;
+
+  const taxaMensal = taxaEquivalente(resultadoPorcentagemCdi);
+
+  const montante = capital * (1 + taxaMensal) ** periodo;
+
+  const montanteComAportesMensais = montante + (valorAporteMensal * ((1 + taxaMensal) ** periodo - 1)) / taxaMensal;
+
+  return montanteComAportesMensais;
+}
+
+export const formatCurrency = (value) => {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  }).format(value);
+};
+
 export function calcularJurosSimples(capital, taxaJurosAnual, periodo) {
   const juros = capital * (taxaJurosAnual / 100) * periodo;
   const montante = capital + juros;

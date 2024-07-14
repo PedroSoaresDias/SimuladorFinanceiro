@@ -3,13 +3,13 @@ import {Chart as ChartJS, ArcElement, Tooltip, Legend} from "chart.js"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function ResultadoCdb({ capital, aportes, juros }) {
+export default function ResultadoCdb({ totalInvestido, juros }) {
   const data = {
-    labels: ["Capital Inicial", "Aportes Mensais", "Juros"],
+    labels: ["Total Investido", "Juros"],
     datasets: [
       {
-        data: [capital, aportes, juros],
-        backgroundColor: ['#36A2EB', '#FFCE56', '#FF6384'],
+        data: [totalInvestido, juros],
+        backgroundColor: ['#36A2EB', '#FF6384'],
       },
     ],
   };
