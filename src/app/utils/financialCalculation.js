@@ -39,7 +39,21 @@ export const formatCurrency = (value) => {
     style: "currency",
     currency: "BRL"
   }).format(value);
-};
+}
+
+export function calcularImposto(periodo, juros) {
+  const periodoEmDias = periodo * 30;
+
+  if (periodoEmDias < 180) {
+    return juros * (22.50 / 100);
+  } else if (periodoEmDias >= 180 && periodoEmDias < 360) {
+    return juros * (20 / 100);
+  } else if (periodoEmDias >= 360 && periodoEmDias < 720) {
+    return juros * (17.50 / 100);
+  } else {
+    return juros * (15 / 100);
+  }
+}
 
 export function calcularJurosSimples(capital, taxaJurosAnual, periodo) {
   const juros = capital * (taxaJurosAnual / 100) * periodo;

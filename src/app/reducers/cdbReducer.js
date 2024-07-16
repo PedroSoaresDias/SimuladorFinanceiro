@@ -1,4 +1,4 @@
-import { calcularCdbPosFixado } from "../utils/financialCalculation";
+import { calcularCdbPosFixado, calcularImposto } from "../utils/financialCalculation";
 
 export const initialState = {
   capital: "",
@@ -8,7 +8,8 @@ export const initialState = {
   periodo: "",
   resultado: "",
   totalInvestido: 0,
-  juros: 0
+  juros: 0,
+  imposto: 0
 };
 
 export function cdbReducer(state, action) {
@@ -27,11 +28,13 @@ export function cdbReducer(state, action) {
       const montanteTotal = calcularCdbPosFixado(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo, state.porcentagemCdi);
       const totalInvestido = (state.valorAporteMensal * state.periodo) + state.capital;
       const juros = montanteTotal - totalInvestido;
+      const imposto = calcularImposto(state.periodo, juros);
       return {
         ...state,
         resultado: montanteTotal,
         totalInvestido,
-        juros: juros.toFixed(2)
+        juros: juros.toFixed(2),
+        imposto: imposto.toFixed(2)
       };
     default:
       return state;
