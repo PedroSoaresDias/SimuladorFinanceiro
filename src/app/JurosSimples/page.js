@@ -4,6 +4,7 @@ import { useReducer } from "react";
 import InputField from "../../../Components/InputField";
 import ResultadoJurosSimples from "../../../Components/ResultadoJurosSimples";
 import { initialState, jurosSimplesReducer } from "../reducers/jurosSimplesReducer";
+import ResultadoJurosGrafico from "../../../Components/ResultadoJurosGrafico";
 
 export default function JurosSimples() {
   const [state, dispatch] = useReducer(jurosSimplesReducer, initialState);
@@ -25,7 +26,12 @@ export default function JurosSimples() {
         <br />
 
         <div className="text-center">
-          {state.resultado > 0 && <ResultadoJurosSimples capital={state.capital} resultado={state.resultado} />}
+          {state.resultado > 0 && (
+            <div>
+              <ResultadoJurosGrafico totalInvestido={state.resultado} juros={state.juros} />
+              <ResultadoJurosSimples capital={state.capital} resultado={state.resultado} />
+            </div>
+          )}
         </div>
       </div>
     </section>

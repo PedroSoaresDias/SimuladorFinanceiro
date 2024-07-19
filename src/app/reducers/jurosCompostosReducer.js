@@ -5,7 +5,9 @@ export const initialState = {
   taxaJurosAnual: "",
   valorAporteMensal: "",
   periodo: "",
-  resultado: ""
+  resultado: "",
+  totalInvestido: 0,
+  juros: 0,
 };
 
 export function jurosCompostosReducer(state, action) {
@@ -20,7 +22,14 @@ export function jurosCompostosReducer(state, action) {
       return { ...state, periodo: action.payload };
     case "CALCULAR_RESULTADO":
       const resultado = calcularJurosCompostos(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo);
-      return { ...state, resultado };
+      const totalInvestido = (state.valorAporteMensal * state.periodo) + state.capital;
+      const juros = resultado - totalInvestido;
+      return {
+        ...state,
+        resultado,
+        totalInvestido,
+        juros: juros.toFixed(2)
+      };
     default:
       return state;
   }

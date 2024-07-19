@@ -4,6 +4,7 @@ import { useReducer } from "react";
 import InputField from "../../../Components/InputField";
 import ResultadoJurosCompostos from "../../../Components/ResultadoJurosCompostos";
 import { initialState, jurosCompostosReducer } from "../reducers/jurosCompostosReducer";
+import ResultadoJurosGrafico from "../../../Components/ResultadoJurosGrafico";
 
 export default function JurosCompostos() {
   const [state, dispatch] = useReducer(jurosCompostosReducer, initialState);
@@ -28,7 +29,13 @@ export default function JurosCompostos() {
 
         <br />
 
-        {state.resultado > 0 && <ResultadoJurosCompostos capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />}
+        {state.resultado > 0 && (
+          <div>
+            <ResultadoJurosGrafico totalInvestido={state.totalInvestido} juros={state.juros} />
+            <br />
+            <ResultadoJurosCompostos capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
+          </div>
+        )}
       </div>
     </section >
   );

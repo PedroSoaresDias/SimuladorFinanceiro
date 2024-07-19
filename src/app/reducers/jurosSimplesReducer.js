@@ -4,7 +4,9 @@ export const initialState = {
   capital: "",
   taxaJurosAnual: "",
   periodo: "",
-  resultado: ""
+  resultado: "",
+  totalInvestido: 0,
+  juros: 0,
 };
 
 export function jurosSimplesReducer(state, action) {
@@ -17,7 +19,13 @@ export function jurosSimplesReducer(state, action) {
       return { ...state, periodo: action.payload };
     case "CALCULAR_RESULTADO":
       const resultado = calcularJurosSimples(state.capital, state.taxaJurosAnual, state.periodo);
-      return { ...state, resultado };
+      const juros = resultado - state.capital;
+      return {
+        ...state,
+        resultado,
+        totalInvestido: state.capital,
+        juros: juros.toFixed(2)
+      };
     default:
       return state;
   }
