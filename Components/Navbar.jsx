@@ -33,6 +33,24 @@ export default function Navbar() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
+                Renda Fixa
+              </Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link className="dropdown-item link" href={"/cdb"}>
+                    CDB
+                  </Link>
+                </li>
+              </ul>
+            </li>
+            <li className="nav-item dropdown link">
+              <Link
+                className="nav-link link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 Calculadora de Juros
               </Link>
               <ul className="dropdown-menu">
