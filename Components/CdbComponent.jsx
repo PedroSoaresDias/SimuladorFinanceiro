@@ -1,50 +1,43 @@
-"use client"
+'use client'
 
-import { useEffect, useReducer } from "react";
-import InputField from "./InputField";
-import { initialState, cdbReducer } from "../src/app/reducers/cdbReducer";
-import ResultadoCdb from "./ResultadoCdb";
-import ResultadoCdbGrafico from "./ResultadoCdbGrafico";
+import { useState } from "react"
+import CdbPreFixadoComponent from "./CdbPreFixadoComponent";
+import CdbPosFixadoComponent from "./CdbPosFixadoComponent";
 
 export default function CdbComponent({ taxaCdi }) {
-  const [state, dispatch] = useReducer(cdbReducer, {
-    ...initialState,
-    taxaJurosAnual: parseFloat(taxaCdi.valor)
-  });
+  const [showCdbPreFixado, setShowCbdPreFixado] = useState(true);
 
-  useEffect(() => {
-    dispatch({ type: "SET_TAXA_JUROS_ANUAL", payload: parseFloat(taxaCdi.valor) });
-  }, [taxaCdi])
+  const toggleToCdbPreFixada = () => {
+    setShowCbdPreFixado(true);
+  }
+
+  const toggleToCdbPosFixada = () => {
+    setShowCbdPreFixado(false);
+  }
 
   return (
-    <section className="composto">
+    <section className="simulador">
       <div className="container">
         <h2 className="text-center text-dark">
           Calculadora de CDB
         </h2>
         <br />
-        <p>Valor do CDI considerado {taxaCdi.valor}%</p>
-        <br />
-        <InputField label={"Capital inicial"} value={state.capital} onChange={e => dispatch({ type: "SET_CAPITAL", payload: parseFloat(e.target.value) })} prefix={"R$"} />
-        <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={e => dispatch({ type: "SET_VALOR_APORTE_MENSAL", payload: parseFloat(e.target.value) })} prefix={"R$"} />
-        <InputField label={"Taxa de Juros"} value={state.porcentagemCdi} onChange={e => dispatch({ type: "SET_PORCENTAGEM_CDI", payload: parseFloat(e.target.value) })} suffix={"CDI"} />
-        <InputField label={"Período"} value={state.periodo} onChange={e => dispatch({ type: "SET_PERIODO", payload: parseFloat(e.target.value) })} suffix={"meses"} />
-
-        <br />
-
-        <div className="d-flex justify-content-center">
-          <button className="btn btn-success col-6" onClick={() => dispatch({ type: "CALCULAR_RESULTADO" })}>Calcular</button>
+        <div className="button-group">
+          <button
+            className={showCdbPreFixado ? 'active' : ''}
+            onClick={toggleToCdbPreFixada}
+          >
+            Pré Fixado
+          </button>
+          <button
+            className={!showCdbPreFixado ? 'active' : ''}
+            onClick={toggleToCdbPosFixada}
+          >
+            Pós Fixado
+          </button>
         </div>
 
-        <br />
-
-        {state.resultado > 0 && (
-          <div>
-            <ResultadoCdbGrafico totalInvestido={state.totalInvestido} juros={state.juros} imposto={state.imposto} />
-            <br />
-            <ResultadoCdb capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
-          </div>
-        )}
+        {showCdbPreFixado ? <CdbPreFixadoComponent /> : <CdbPosFixadoComponent taxaCdi={taxaCdi} />}
       </div>
     </section >
   );

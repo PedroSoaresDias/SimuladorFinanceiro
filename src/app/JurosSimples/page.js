@@ -10,7 +10,7 @@ export default function JurosSimples() {
   const [state, dispatch] = useReducer(jurosSimplesReducer, initialState);
 
   return (
-    <section className="simples">
+    <section className="simulador">
       <div className="container text-dark">
         <h2 className="text-center">Calculadora de Juros Simples</h2>
         <br />

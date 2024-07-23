@@ -86,7 +86,7 @@
   }
 }
 
-.composto {
+.simulador {
   background-color: rgb(208, 208, 208);
   min-height: 100vh;
   padding: 2.5rem 0;
@@ -95,71 +95,41 @@
   align-items: center;
 }
 
-.composto h2,
-.composto label,
-.composto p {
-  font-weight: 600;
-}
-
-.simples {
-  background-color: rgb(208, 208, 208);
-  min-height: 100vh;
-  padding: 2.5rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.simples h2,
-.simples label,
-.simples p {
-  font-weight: 600;
-}
-
-.sac {
-  background-color: rgb(208, 208, 208);
-  min-height: 100vh;
-  padding: 2.5rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.sac .aviso{
+.simulador .aviso{
   background-color: rgba(214, 0, 0, 0.35);
   border: 1px solid red;
   color: black
 }
 
-.sac .aviso p{
+.simulador .aviso p{
   font-weight: 400;
   font-size: 1rem;
 }
 
-.sac h2,
-.sac label,
-.sac h4,
-.sac ul,
-.sac p {
+.simulador h2,
+.simulador label,
+.simulador h4,
+.simulador ul,
+.simulador p {
   font-weight: 600;
 }
 
 @media screen and (max-width: 340px) {
-  .sac h4{
+  .simulador h4{
     font-size: 1.2rem;
   }
 
-  .sac ul{
+  .simulador ul{
     font-size: 0.9rem;
   }
 }
 
 @media screen and (max-width: 300px){
-  .sac h4{
+  .simulador h4{
     font-size: 1rem;
   }
 
-  .sac ul{
+  .simulador ul{
     font-size: 0.8rem;
   }
 }
@@ -176,4 +146,35 @@ footer p {
   font-weight: 500;
   font-size: 1.1rem;
   color: black;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.button-group button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: 200ms;
+}
+
+.button-group button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.button-group button.active {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.button-group button:not(.active) {
+  background-color: #f0f0f0;
+  color: black;
+  border: 1px solid #ccc;
 }

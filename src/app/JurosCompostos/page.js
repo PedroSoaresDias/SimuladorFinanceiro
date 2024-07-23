@@ -10,7 +10,7 @@ export default function JurosCompostos() {
   const [state, dispatch] = useReducer(jurosCompostosReducer, initialState);
 
   return (
-    <section className="composto">
+    <section className="simulador">
       <div className="container">
         <h2 className="text-center text-dark">
           Calculadora de Juros Compostos

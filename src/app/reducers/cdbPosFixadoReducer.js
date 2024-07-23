@@ -12,7 +12,7 @@ export const initialState = {
   imposto: 0
 };
 
-export function cdbReducer(state, action) {
+export function cdbPosFixadoReducer(state, action) {
   switch (action.type) {
     case "SET_CAPITAL":
       return { ...state, capital: action.payload };

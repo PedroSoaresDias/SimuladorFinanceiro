@@ -8,7 +8,7 @@ export default function Financiamento() {
   const [state, dispatch] = useReducer(financiamentoSacReducer, initialState);
 
   return (
-    <section className="sac">
+    <section className="simulador">
       <div className="container text-dark">
         <h2 className="text-center">Financiamento SAC</h2>
 
