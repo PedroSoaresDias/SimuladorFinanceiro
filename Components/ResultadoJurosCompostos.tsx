@@ -1,4 +1,5 @@
-import { formatCurrency } from "@/app/utils/financialCalculation";
+import React from "react";
+import { formatCurrency } from "../src/app/utils/financialCalculation";
 
 export default function ResultadoJurosCompostos({ capital, valorAporteMensal, periodo, resultado }) {
   const totalInvestido = capital + valorAporteMensal * periodo;

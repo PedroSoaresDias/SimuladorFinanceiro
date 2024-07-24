@@ -1,9 +1,16 @@
+import React from "react";
 import { Pie } from "react-chartjs-2";
 import {Chart as ChartJS, ArcElement, Tooltip, Legend} from "chart.js"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function ResultadoCdbGrafico({ totalInvestido, juros, imposto }) {
+interface ResultadoCdbGraficoProps {
+  totalInvestido: number;
+  juros: number;
+  imposto: number;
+}
+
+const ResultadoCdbGrafico: React.FC<ResultadoCdbGraficoProps> = ({ totalInvestido, juros, imposto }) => {
   const data = {
     labels: ["Total Investido", "Juros", "Imposto"],
     datasets: [
@@ -18,10 +25,12 @@ export default function ResultadoCdbGrafico({ totalInvestido, juros, imposto }) 
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "top" as const,
       },
     },
   };
 
   return <Pie data={data} options={options} />;
 }
+
+export default ResultadoCdbGrafico;

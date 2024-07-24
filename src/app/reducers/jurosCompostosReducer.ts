@@ -1,16 +1,33 @@
 import { calcularInvestimento } from "../utils/financialCalculation";
 
-export const initialState = {
-  capital: "",
-  taxaJurosAnual: "",
-  valorAporteMensal: "",
-  periodo: "",
-  resultado: "",
+export interface State {
+  capital: number;
+  taxaJurosAnual: number;
+  valorAporteMensal: number;
+  periodo: number;
+  resultado: number;
+  totalInvestido: number;
+  juros: number;
+}
+
+export const initialState: State = {
+  capital: 0,
+  taxaJurosAnual: 0,
+  valorAporteMensal: 0,
+  periodo: 0,
+  resultado: 0,
   totalInvestido: 0,
   juros: 0,
 };
 
-export function jurosCompostosReducer(state, action) {
+export type Action =
+  | { type: "SET_CAPITAL"; payload: number }
+  | { type: "SET_TAXA_JUROS_ANUAL"; payload: number }
+  | { type: "SET_VALOR_APORTE_MENSAL"; payload: number }
+  | { type: "SET_PERIODO"; payload: number }
+  | { type: "CALCULAR_RESULTADO" };
+
+export function jurosCompostosReducer(state: State, action: Action) {
   switch (action.type) {
     case "SET_CAPITAL":
       return { ...state, capital: action.payload };
@@ -24,11 +41,12 @@ export function jurosCompostosReducer(state, action) {
       const resultado = calcularInvestimento(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo);
       const totalInvestido = (state.valorAporteMensal * state.periodo) + state.capital;
       const juros = resultado - totalInvestido;
+      const valorJuros = juros.toFixed(2);
       return {
         ...state,
         resultado,
         totalInvestido,
-        juros: juros.toFixed(2)
+        juros: parseFloat(valorJuros)
       };
     default:
       return state;

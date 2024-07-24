@@ -1,8 +1,8 @@
-export function taxaEquivalente(taxaJurosAnual) {
+export function taxaEquivalente(taxaJurosAnual: number) {
   return Math.pow(1 + taxaJurosAnual / 100, 1 / 12) - 1;
 }
 
-export function calcularInvestimento(capital, taxaJurosAnual, valorAporteMensal, periodo) {
+export function calcularInvestimento(capital: number, taxaJurosAnual: number, valorAporteMensal: number, periodo: number) {
   const taxaMensal = taxaEquivalente(taxaJurosAnual);
 
   const montante = capital * (1 + taxaMensal) ** periodo;
@@ -12,7 +12,7 @@ export function calcularInvestimento(capital, taxaJurosAnual, valorAporteMensal,
   return montanteComAportesMensais;
 }
 
-export function calcularCdbPosFixado(capital, taxaJurosAnual, valorAporteMensal, periodo, porcentagemCdi) {
+export function calcularCdbPosFixado(capital: number, taxaJurosAnual: number, valorAporteMensal: number, periodo: number, porcentagemCdi: number) {
   const resultadoPorcentagemCdi = (porcentagemCdi / 100) * taxaJurosAnual;
 
   const taxaMensal = taxaEquivalente(resultadoPorcentagemCdi);
@@ -24,14 +24,14 @@ export function calcularCdbPosFixado(capital, taxaJurosAnual, valorAporteMensal,
   return montanteComAportesMensais;
 }
 
-export const formatCurrency = (value) => {
+export const formatCurrency = (value: number) => {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL"
   }).format(value);
 }
 
-export function calcularImposto(periodo, juros) {
+export function calcularImposto(periodo: number, juros: number) {
   const periodoEmDias = periodo * 30;
 
   if (periodoEmDias < 180) {
@@ -45,17 +45,17 @@ export function calcularImposto(periodo, juros) {
   }
 }
 
-export function calcularJurosSimples(capital, taxaJurosAnual, periodo) {
+export function calcularJurosSimples(capital: number, taxaJurosAnual: number, periodo: number) {
   const juros = capital * (taxaJurosAnual / 100) * periodo;
   const montante = capital + juros;
   return montante;
 }
 
-export function calcularAmortizacaoMensal(emprestimo, prazoPagamento) {
+export function calcularAmortizacaoMensal(emprestimo: number, prazoPagamento: number) {
   return emprestimo / prazoPagamento;
 }
 
-export function calcularFinanciamento(emprestimo, taxaJurosAnual, prazoPagamento) {
+export function calcularFinanciamento(emprestimo: number, taxaJurosAnual: number, prazoPagamento: number) {
   const taxaMensal = taxaEquivalente(taxaJurosAnual);
   let saldoDevedor = emprestimo;
   let parcelasCalculadas = [];
@@ -65,7 +65,7 @@ export function calcularFinanciamento(emprestimo, taxaJurosAnual, prazoPagamento
     const jurosMensais = saldoDevedor * taxaMensal;
     const parcela = amortizacao + jurosMensais;
     saldoDevedor -= amortizacao;
-    parcelasCalculadas.push(parcela);
+    parcelasCalculadas.push(parcela as never);
   }
 
   const somaParcelas = parcelasCalculadas.reduce(

@@ -1,4 +1,6 @@
-import { calcularImposto, formatCurrency } from "@/app/utils/financialCalculation";
+import React from "react";
+import { calcularImposto, formatCurrency } from "../src/app/utils/financialCalculation";
+
 
 export default function ResultadoCdb({ capital, valorAporteMensal, periodo, resultado }) {
   const totalInvestido = capital + valorAporteMensal * periodo;

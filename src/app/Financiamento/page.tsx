@@ -1,11 +1,16 @@
 "use client"
 
-import { useReducer } from "react";
-import InputField from "../../../Components/InputField";
-import { initialState, financiamentoSacReducer } from "../reducers/financiamentoSacReducer";
+import React, { useReducer, ChangeEvent } from "react";
+import { InputField } from "../../../Components/InputField";
+import { initialState, financiamentoSacReducer, State, Action } from "../reducers/financiamentoSacReducer";
 
 export default function Financiamento() {
-  const [state, dispatch] = useReducer(financiamentoSacReducer, initialState);
+  const [state, dispatch] = useReducer<React.Reducer<State, Action>>(financiamentoSacReducer, initialState);
+
+  const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(e.target.value);
+    dispatch({ type, payload: value });
+  };
 
   return (
     <section className="simulador">
@@ -17,19 +22,19 @@ export default function Financiamento() {
         <InputField
           label="Valor do empréstimo"
           value={state.emprestimo}
-          onChange={(e) => dispatch({ type: 'SET_EMPRESTIMO', payload: parseFloat(e.target.value) })}
+          onChange={handleChange("SET_EMPRESTIMO")}
           prefix="R$"
         />
         <InputField
           label="Taxa de juros"
           value={state.taxaJurosAnual}
-          onChange={(e) => dispatch({ type: 'SET_TAXA_JUROS_ANUAL', payload: parseFloat(e.target.value) })}
+          onChange={handleChange("SET_TAXA_JUROS_ANUAL")}
           suffix="% ao ano"
         />
         <InputField
           label="Prazo de Pagamento"
           value={state.prazoPagamento}
-          onChange={(e) => dispatch({ type: 'SET_PRAZO_PAGAMENTO', payload: parseFloat(e.target.value) })}
+          onChange={handleChange("SET_PRAZO_PAGAMENTO")}
           suffix="meses"
         />
 

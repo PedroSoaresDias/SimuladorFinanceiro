@@ -1,17 +1,35 @@
 import { calcularImposto, calcularInvestimento } from "../utils/financialCalculation";
 
-export const initialState = {
-  capital: "",
-  taxaJurosAnual: "",
-  valorAporteMensal: "",
-  periodo: "",
-  resultado: "",
+export interface State {
+  capital: number;
+  taxaJurosAnual: number;
+  valorAporteMensal: number;
+  periodo: number;
+  resultado: number;
+  totalInvestido: number;
+  juros: number;
+  imposto: number;
+}
+
+export const initialState: State = {
+  capital: 0,
+  taxaJurosAnual: 0,
+  valorAporteMensal: 0,
+  periodo: 0,
+  resultado: 0,
   totalInvestido: 0,
   juros: 0,
   imposto: 0
 };
 
-export function cdbPreFixadoReducer(state, action) {
+export type Action =
+  | { type: "SET_CAPITAL"; payload: number }
+  | { type: "SET_TAXA_JUROS_ANUAL"; payload: number }
+  | { type: "SET_VALOR_APORTE_MENSAL"; payload: number }
+  | { type: "SET_PERIODO"; payload: number }
+  | { type: "CALCULAR_RESULTADO" };
+
+export function cdbPreFixadoReducer(state: State, action: Action) {
   switch (action.type) {
     case "SET_CAPITAL":
       return { ...state, capital: action.payload };
@@ -26,12 +44,14 @@ export function cdbPreFixadoReducer(state, action) {
       const totalInvestido = (state.valorAporteMensal * state.periodo) + state.capital;
       const juros = montanteTotal - totalInvestido;
       const imposto = calcularImposto(state.periodo, juros);
+      const valorJuros = juros.toFixed(2);
+      const valorImposto = imposto.toFixed(2);
       return {
         ...state,
         resultado: montanteTotal,
         totalInvestido,
-        juros: juros.toFixed(2),
-        imposto: imposto.toFixed(2)
+        juros: parseFloat(valorJuros),
+        imposto: parseFloat(valorImposto)
       };
     default:
       return state;

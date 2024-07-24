@@ -1,3 +1,4 @@
+import React from "react";
 import CdbComponent from "../../../Components/CdbComponent";
 import { getTaxaSelic } from "../services/data";
 

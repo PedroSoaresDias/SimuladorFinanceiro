@@ -1,16 +1,21 @@
 "use client"
 
-import { useEffect, useReducer } from "react";
-import InputField from "./InputField";
-import { initialState, cdbPosFixadoReducer } from "../src/app/reducers/cdbPosFixadoReducer";
+import React, { useEffect, useReducer, ChangeEvent } from "react";
+import { InputField } from "./InputField";
+import { initialState, cdbPosFixadoReducer, State, Action } from "../src/app/reducers/cdbPosFixadoReducer";
 import ResultadoCdb from "./ResultadoCdb";
 import ResultadoCdbGrafico from "./ResultadoCdbGrafico";
 
-export default function CdbPosFixadoComponent({ taxaCdi }) {
-  const [state, dispatch] = useReducer(cdbPosFixadoReducer, {
+const CdbPosFixadoComponent = ({ taxaCdi }: { taxaCdi: { valor: string } }) => {
+  const [state, dispatch] = useReducer<React.Reducer<State, Action>>(cdbPosFixadoReducer, {
     ...initialState,
     taxaJurosAnual: parseFloat(taxaCdi.valor)
   });
+
+  const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(e.target.value);
+    dispatch({ type, payload: value });
+  };
 
   useEffect(() => {
     if (taxaCdi && taxaCdi.valor) {
@@ -23,10 +28,10 @@ export default function CdbPosFixadoComponent({ taxaCdi }) {
       {taxaCdi && taxaCdi.valor !== undefined ? (
         <div>
           <p>Valor do CDI considerado {taxaCdi.valor}%</p>
-          <InputField label={"Capital inicial"} value={state.capital} onChange={e => dispatch({ type: "SET_CAPITAL", payload: parseFloat(e.target.value) })} prefix={"R$"} />
-          <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={e => dispatch({ type: "SET_VALOR_APORTE_MENSAL", payload: parseFloat(e.target.value) })} prefix={"R$"} />
-          <InputField label={"Porcentagem em CDI"} value={state.porcentagemCdi} onChange={e => dispatch({ type: "SET_PORCENTAGEM_CDI", payload: parseFloat(e.target.value) })} suffix={"CDI"} />
-          <InputField label={"Período"} value={state.periodo} onChange={e => dispatch({ type: "SET_PERIODO", payload: parseFloat(e.target.value) })} suffix={"meses"} />
+          <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} />
+          <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} />
+          <InputField label={"Porcentagem em CDI"} value={state.porcentagemCdi} onChange={handleChange("SET_PORCENTAGEM_CDI")} suffix={"CDI"} />
+          <InputField label={"Período"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} />
 
           <br />
 
@@ -50,3 +55,5 @@ export default function CdbPosFixadoComponent({ taxaCdi }) {
     </>
   );
 }
+
+export default CdbPosFixadoComponent;
