@@ -1,4 +1,4 @@
-import { calcularCdbPosFixado, calcularImposto } from "../utils/financialCalculation";
+import { calcularInvestimentoPosFixado, calcularImposto } from "../utils/financialCalculation";
 
 export interface State {
   capital: number;
@@ -45,7 +45,7 @@ export function cdbPosFixadoReducer(state: State, action: Action) {
     case "SET_PERIODO":
       return { ...state, periodo: action.payload };
     case "CALCULAR_RESULTADO":
-      const montanteTotal = calcularCdbPosFixado(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo, state.porcentagemCdi);
+      const montanteTotal = calcularInvestimentoPosFixado(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo, state.porcentagemCdi);
       const totalInvestido = (state.valorAporteMensal * state.periodo) + state.capital;
       const juros = montanteTotal - totalInvestido;
       const imposto = calcularImposto(state.periodo, juros);

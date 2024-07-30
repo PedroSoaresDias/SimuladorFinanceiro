@@ -2,7 +2,7 @@ export function taxaEquivalente(taxaJurosAnual: number) {
   return Math.pow(1 + taxaJurosAnual / 100, 1 / 12) - 1;
 }
 
-export function calcularInvestimento(capital: number, taxaJurosAnual: number, valorAporteMensal: number, periodo: number) {
+export function calcularInvestimentoPreFixado(capital: number, taxaJurosAnual: number, valorAporteMensal: number, periodo: number) {
   const taxaMensal = taxaEquivalente(taxaJurosAnual);
 
   const montante = capital * (1 + taxaMensal) ** periodo;
@@ -12,7 +12,7 @@ export function calcularInvestimento(capital: number, taxaJurosAnual: number, va
   return montanteComAportesMensais;
 }
 
-export function calcularCdbPosFixado(capital: number, taxaJurosAnual: number, valorAporteMensal: number, periodo: number, porcentagemCdi: number) {
+export function calcularInvestimentoPosFixado(capital: number, taxaJurosAnual: number, valorAporteMensal: number, periodo: number, porcentagemCdi: number) {
   const resultadoPorcentagemCdi = (porcentagemCdi / 100) * taxaJurosAnual;
 
   const taxaMensal = taxaEquivalente(resultadoPorcentagemCdi);

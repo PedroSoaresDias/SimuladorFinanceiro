@@ -27,7 +27,7 @@ export type Action =
   | { type: "SET_PERIODO"; payload: number }
   | { type: "CALCULAR_RESULTADO" };
 
-export function jurosCompostosReducer(state: State, action: Action) {
+export function lcilcaPreFixadoReducer(state: State, action: Action) {
   switch (action.type) {
     case "SET_CAPITAL":
       return { ...state, capital: action.payload };
@@ -38,15 +38,15 @@ export function jurosCompostosReducer(state: State, action: Action) {
     case "SET_PERIODO":
       return { ...state, periodo: action.payload };
     case "CALCULAR_RESULTADO":
-      const resultado = calcularInvestimentoPreFixado(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo);
+      const montanteTotal = calcularInvestimentoPreFixado(state.capital, state.taxaJurosAnual, state.valorAporteMensal, state.periodo);
       const totalInvestido = (state.valorAporteMensal * state.periodo) + state.capital;
-      const juros = resultado - totalInvestido;
+      const juros = montanteTotal - totalInvestido;
       const valorJuros = juros.toFixed(2);
       return {
         ...state,
-        resultado,
+        resultado: montanteTotal,
         totalInvestido,
-        juros: parseFloat(valorJuros)
+        juros: parseFloat(valorJuros),
       };
     default:
       return state;

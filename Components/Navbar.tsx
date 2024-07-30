@@ -42,6 +42,11 @@ export default function Navbar() {
                     CDB
                   </Link>
                 </li>
+                <li>
+                  <Link className="dropdown-item link" href={"/LCI-LCA"}>
+                    LCI/LCA
+                  </Link>
+                </li>
               </ul>
             </li>
             <li className="nav-item dropdown link">
