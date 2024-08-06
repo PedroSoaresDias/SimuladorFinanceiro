@@ -4,7 +4,7 @@ import React, { useReducer, ChangeEvent } from "react";
 import { InputField } from "../../../Components/InputField";
 import ResultadoJurosCompostos from "../../../Components/ResultadoJurosCompostos";
 import { initialState, jurosCompostosReducer, State, Action } from "../reducers/jurosCompostosReducer";
-import ResultadoJurosGrafico from "../../../Components/ResultadoJurosGrafico";
+import ResultadoGraficoSemImposto from "../../../Components/ResultadoGraficoSemImposto";
 
 const JurosCompostos: React.FC = () => {
   const [state, dispatch] = useReducer<React.Reducer<State, Action>>(jurosCompostosReducer, initialState);
@@ -36,7 +36,7 @@ const JurosCompostos: React.FC = () => {
 
         {state.resultado > 0 && (
           <div>
-            <ResultadoJurosGrafico totalInvestido={state.totalInvestido} juros={state.juros} />
+            <ResultadoGraficoSemImposto totalInvestido={state.totalInvestido} juros={state.juros} />
             <br />
             <ResultadoJurosCompostos capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
           </div>

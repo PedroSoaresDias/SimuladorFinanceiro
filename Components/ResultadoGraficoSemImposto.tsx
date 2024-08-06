@@ -4,12 +4,12 @@ import {Chart as ChartJS, ArcElement, Tooltip, Legend} from "chart.js"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-interface ResultadoJurosGraficoProps {
+interface ResultadoGraficoSemImpostoProps {
   totalInvestido: number;
   juros: number;
 }
 
-const ResultadoJurosGrafico: React.FC<ResultadoJurosGraficoProps>  = ({ totalInvestido, juros }) => {
+const ResultadoGraficoSemImposto: React.FC<ResultadoGraficoSemImpostoProps>  = ({ totalInvestido, juros }) => {
   const data = {
     labels: ["Total Investido", "Juros"],
     datasets: [
@@ -32,4 +32,4 @@ const ResultadoJurosGrafico: React.FC<ResultadoJurosGraficoProps>  = ({ totalInv
   return <Pie data={data} options={options} />;
 }
 
-export default ResultadoJurosGrafico;
+export default ResultadoGraficoSemImposto;

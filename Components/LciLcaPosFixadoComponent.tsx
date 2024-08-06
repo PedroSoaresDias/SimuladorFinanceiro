@@ -4,7 +4,7 @@ import React, { useEffect, useReducer, ChangeEvent } from "react";
 import { InputField } from "./InputField";
 import { initialState, lcilcaPosFixadoReducer, State, Action } from "../src/app/reducers/lcilcaPosFixadoReducer";
 import ResultadoLciLca from "./ResultadoLciLca";
-import ResultadoLciLcaGrafico from "./ResultadoLciLcaGrafico";
+import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
 
 export default function LciLcaPosFixadoComponent({ taxaCdi }: { taxaCdi: { valor: string } }) {
   const [state, dispatch] = useReducer<React.Reducer<State, Action>>(lcilcaPosFixadoReducer, {
@@ -43,7 +43,7 @@ export default function LciLcaPosFixadoComponent({ taxaCdi }: { taxaCdi: { valor
 
           {state.resultado > 0 && (
             <div>
-              <ResultadoLciLcaGrafico totalInvestido={state.totalInvestido} juros={state.juros} />
+              <ResultadoGraficoSemImposto totalInvestido={state.totalInvestido} juros={state.juros} />
               <br />
               <ResultadoLciLca capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
             </div>

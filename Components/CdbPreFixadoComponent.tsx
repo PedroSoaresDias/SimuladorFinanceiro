@@ -4,7 +4,7 @@ import React, { useReducer, ChangeEvent } from "react";
 import { InputField } from "./InputField";
 import { initialState, cdbPreFixadoReducer, State, Action } from "../src/app/reducers/cdbPreFixadoReducer";
 import ResultadoCdb from "./ResultadoCdb";
-import ResultadoCdbGrafico from "./ResultadoCdbGrafico";
+import ResultadoGraficoComImposto from "./ResultadoGraficoComImposto";
 
 export default function CdbPreFixadoComponent() {
   const [state, dispatch] = useReducer<React.Reducer<State, Action>>(cdbPreFixadoReducer, initialState);
@@ -31,7 +31,7 @@ export default function CdbPreFixadoComponent() {
 
       {state.resultado > 0 && (
         <div>
-          <ResultadoCdbGrafico totalInvestido={state.totalInvestido} juros={state.juros} imposto={state.imposto} />
+          <ResultadoGraficoComImposto totalInvestido={state.totalInvestido} juros={state.juros} imposto={state.imposto} />
           <br />
           <ResultadoCdb capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
         </div>

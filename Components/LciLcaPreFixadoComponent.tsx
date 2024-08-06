@@ -4,7 +4,7 @@ import React, { useReducer, ChangeEvent } from "react";
 import { InputField } from "./InputField";
 import { initialState, lcilcaPreFixadoReducer, State, Action } from "../src/app/reducers/lcilcaPreFixadoReducer";
 import ResultadoLciLca from "./ResultadoLciLca";
-import ResultadoLciLcaGrafico from "./ResultadoLciLcaGrafico";
+import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
 
 export default function LciLcaPreFixadoComponent() {
   const [state, dispatch] = useReducer<React.Reducer<State, Action>>(lcilcaPreFixadoReducer, initialState);
@@ -31,7 +31,7 @@ export default function LciLcaPreFixadoComponent() {
 
       {state.resultado > 0 && (
         <div>
-          <ResultadoLciLcaGrafico totalInvestido={state.totalInvestido} juros={state.juros} />
+          <ResultadoGraficoSemImposto totalInvestido={state.totalInvestido} juros={state.juros} />
           <br />
           <ResultadoLciLca capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
         </div>

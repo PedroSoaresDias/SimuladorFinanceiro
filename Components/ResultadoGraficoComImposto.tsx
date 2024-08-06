@@ -4,18 +4,19 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-interface ResultadoLciLcaGraficoProps {
+interface ResultadoGraficoComImpostoProps {
   totalInvestido: number;
   juros: number;
+  imposto: number;
 }
 
-const ResultadoLciLcaGrafico: React.FC<ResultadoLciLcaGraficoProps> = ({ totalInvestido, juros }) => {
+const ResultadoGraficoComImposto: React.FC<ResultadoGraficoComImpostoProps> = ({ totalInvestido, juros, imposto }) => {
   const data = {
-    labels: ["Total Investido", "Juros"],
+    labels: ["Total Investido", "Juros", "Imposto"],
     datasets: [
       {
-        data: [totalInvestido, juros],
-        backgroundColor: ['#2573CC', '#16B310'],
+        data: [totalInvestido, juros, imposto],
+        backgroundColor: ['#2573CC', '#16B310', "#C25208"],
       },
     ],
   };
@@ -32,4 +33,4 @@ const ResultadoLciLcaGrafico: React.FC<ResultadoLciLcaGraficoProps> = ({ totalIn
   return <Pie data={data} options={options} />;
 }
 
-export default ResultadoLciLcaGrafico;
+export default ResultadoGraficoComImposto;

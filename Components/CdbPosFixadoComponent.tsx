@@ -4,7 +4,7 @@ import React, { useEffect, useReducer, ChangeEvent } from "react";
 import { InputField } from "./InputField";
 import { initialState, cdbPosFixadoReducer, State, Action } from "../src/app/reducers/cdbPosFixadoReducer";
 import ResultadoCdb from "./ResultadoCdb";
-import ResultadoCdbGrafico from "./ResultadoCdbGrafico";
+import ResultadoGraficoComImposto from "./ResultadoGraficoComImposto";
 
 const CdbPosFixadoComponent = ({ taxaCdi }: { taxaCdi: { valor: string } }) => {
   const [state, dispatch] = useReducer<React.Reducer<State, Action>>(cdbPosFixadoReducer, {
@@ -43,7 +43,7 @@ const CdbPosFixadoComponent = ({ taxaCdi }: { taxaCdi: { valor: string } }) => {
 
           {state.resultado > 0 && (
             <div>
-              <ResultadoCdbGrafico totalInvestido={state.totalInvestido} juros={state.juros} imposto={state.imposto} />
+              <ResultadoGraficoComImposto totalInvestido={state.totalInvestido} juros={state.juros} imposto={state.imposto} />
               <br />
               <ResultadoCdb capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
             </div>
