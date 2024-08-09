@@ -3,6 +3,7 @@
 import React, { useReducer, ChangeEvent } from "react";
 import { InputField } from "../../../Components/InputField";
 import { initialState, financiamentoSacReducer, State, Action } from "../reducers/financiamentoSacReducer";
+import { formatCurrency } from "../utils/financialCalculation";
 
 export default function Financiamento() {
   const [state, dispatch] = useReducer<React.Reducer<State, Action>>(financiamentoSacReducer, initialState);
@@ -48,24 +49,25 @@ export default function Financiamento() {
         {state.valorParcela.length > 0 && (
           <div className="text-center text-dark">
             <h4>Parcelas:</h4>
-            <ul>
-              {state.valorParcela.map((parcela, index) => (
-                <li key={index}>
-                  Parcela {index + 1}:{" "}
-                  {new Intl.NumberFormat("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  }).format(parcela)}
-                </li>
-              ))}
-            </ul>
-            <p>
-              Total:{" "}
-              {new Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              }).format(state.totalParcelas)}
-            </p>
+            <div className="table-responsive my-3">
+              <table className="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Nº de parcelas</th>
+                    <th>Valor da parcela</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {state.valorParcela.map((parcela, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}ª Parcela</td>
+                      <td>{formatCurrency(parcela)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p>Valor total: {formatCurrency(state.totalParcelas)}</p>
+            </div>
           </div>
         )}
         <br />
