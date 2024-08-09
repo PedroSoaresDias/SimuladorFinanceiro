@@ -47,6 +47,11 @@ export default function Navbar() {
                     LCI/LCA
                   </Link>
                 </li>
+                <li>
+                  <Link className="dropdown-item link" href={"/Poupanca"}>
+                    Poupança
+                  </Link>
+                </li>
               </ul>
             </li>
             <li className="nav-item dropdown link">
