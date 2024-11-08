@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useReducer, ChangeEvent, useEffect } from "react";
+import React, { useReducer, ChangeEvent, useEffect, useMemo } from "react";
 import { InputField } from "./InputField";
 import { initialState, poupancaReducer, State, Action } from "../src/app/reducers/poupancaReducer";
 import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
@@ -13,28 +13,20 @@ interface TaxasProps {
 }
 
 export default function PoupancaComponent({ taxaCdi }: TaxasProps) {
-  const taxaSelic = parseFloat(taxaCdi.valor) + 0.10;
+  const taxaSelic = useMemo(() => parseFloat(taxaCdi.valor) + 0.10, [taxaCdi]);
   
-  const calcularTaxaPoupanca = () => {
-    let taxaPoupanca: number;
-    if (taxaSelic <= 8.5) {
-      taxaPoupanca = taxaSelic * 0.7;
-      return taxaPoupanca.toFixed(2)
-    }
-    else {
-      taxaPoupanca = 6.17;
-      return taxaPoupanca.toFixed(2);
-    }
-  }
+  const taxaPoupanca = useMemo(() => {
+    return taxaSelic <= 8.5 ? (taxaSelic * 0.7).toFixed(2) : "6.17"
+  }, [taxaSelic]);
 
   const [state, dispatch] = useReducer<React.Reducer<State, Action>>(poupancaReducer, {
     ...initialState,
-    taxaJurosAnual: parseFloat(calcularTaxaPoupanca())
+    taxaJurosAnual: parseFloat(taxaPoupanca),
   });
 
   useEffect(() => {
-    handleChange("SET_TAXA_JUROS_ANUAL");
-  }, [calcularTaxaPoupanca()])
+    dispatch({ type: "SET_TAXA_JUROS_ANUAL", payload: parseFloat(taxaPoupanca) });
+  }, [taxaPoupanca]);
 
   const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);

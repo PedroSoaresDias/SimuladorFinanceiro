@@ -1,15 +1,17 @@
 "use client"
 
-import React, { useEffect, useReducer, ChangeEvent } from "react";
+import React, { useEffect, useReducer, ChangeEvent, useMemo } from "react";
 import { InputField } from "./InputField";
 import { initialState, lcilcaPosFixadoReducer, State, Action } from "../src/app/reducers/lcilcaPosFixadoReducer";
 import ResultadoLciLca from "./ResultadoLciLca";
 import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
 
 export default function LciLcaPosFixadoComponent({ taxaCdi }: { taxaCdi: { valor: string } }) {
+  const taxaJurosAnual = useMemo(() => parseFloat(taxaCdi.valor), [taxaCdi]);
+
   const [state, dispatch] = useReducer<React.Reducer<State, Action>>(lcilcaPosFixadoReducer, {
     ...initialState,
-    taxaJurosAnual: parseFloat(taxaCdi.valor)
+    taxaJurosAnual
   });
 
   const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
