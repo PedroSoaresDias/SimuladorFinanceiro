@@ -2,11 +2,11 @@
 
 import React, { useReducer, ChangeEvent } from "react";
 import { InputField } from "../../../Components/InputField";
-import { initialState, financiamentoSacReducer, State, Action } from "../reducers/financiamentoSacReducer";
+import { initialState, financiamentoSacReducer, Action } from "../reducers/financiamentoSacReducer";
 import { formatCurrency } from "../utils/financialCalculation";
 
 export default function Financiamento() {
-  const [state, dispatch] = useReducer<React.Reducer<State, Action>>(financiamentoSacReducer, initialState);
+  const [state, dispatch] = useReducer(financiamentoSacReducer, initialState);
 
   const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);

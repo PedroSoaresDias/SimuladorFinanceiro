@@ -3,11 +3,11 @@
 import React, { useReducer, ChangeEvent } from "react";
 import { InputField } from "../../../Components/InputField";
 import ResultadoJurosCompostos from "../../../Components/ResultadoJurosCompostos";
-import { initialState, jurosCompostosReducer, State, Action } from "../reducers/jurosCompostosReducer";
+import { initialState, jurosCompostosReducer, Action } from "../reducers/jurosCompostosReducer";
 import ResultadoGraficoSemImposto from "../../../Components/ResultadoGraficoSemImposto";
 
 const JurosCompostos: React.FC = () => {
-  const [state, dispatch] = useReducer<React.Reducer<State, Action>>(jurosCompostosReducer, initialState);
+  const [state, dispatch] = useReducer(jurosCompostosReducer, initialState);
 
   const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);

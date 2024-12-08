@@ -2,12 +2,12 @@
 
 import React, { useReducer, ChangeEvent } from "react";
 import { InputField } from "./InputField";
-import { initialState, lcilcaPreFixadoReducer, State, Action } from "../src/app/reducers/lcilcaPreFixadoReducer";
+import { initialState, lcilcaPreFixadoReducer, Action } from "../src/app/reducers/lcilcaPreFixadoReducer";
 import ResultadoLciLca from "./ResultadoLciLca";
 import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
 
 export default function LciLcaPreFixadoComponent() {
-  const [state, dispatch] = useReducer<React.Reducer<State, Action>>(lcilcaPreFixadoReducer, initialState);
+  const [state, dispatch] = useReducer(lcilcaPreFixadoReducer, initialState);
 
   const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);

@@ -2,14 +2,14 @@
 
 import React, { useEffect, useReducer, ChangeEvent, useMemo } from "react";
 import { InputField } from "./InputField";
-import { initialState, lcilcaPosFixadoReducer, State, Action } from "../src/app/reducers/lcilcaPosFixadoReducer";
+import { initialState, lcilcaPosFixadoReducer, Action } from "../src/app/reducers/lcilcaPosFixadoReducer";
 import ResultadoLciLca from "./ResultadoLciLca";
 import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
 
 export default function LciLcaPosFixadoComponent({ taxaCdi }: { taxaCdi: { valor: string } }) {
   const taxaJurosAnual = useMemo(() => parseFloat(taxaCdi.valor), [taxaCdi]);
 
-  const [state, dispatch] = useReducer<React.Reducer<State, Action>>(lcilcaPosFixadoReducer, {
+  const [state, dispatch] = useReducer(lcilcaPosFixadoReducer, {
     ...initialState,
     taxaJurosAnual
   });

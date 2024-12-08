@@ -2,12 +2,12 @@
 
 import React, { useReducer, ChangeEvent } from "react";
 import { InputField } from "./InputField";
-import { initialState, cdbPreFixadoReducer, State, Action } from "../src/app/reducers/cdbPreFixadoReducer";
+import { initialState, cdbPreFixadoReducer, Action } from "../src/app/reducers/cdbPreFixadoReducer";
 import ResultadoCdb from "./ResultadoCdb";
 import ResultadoGraficoComImposto from "./ResultadoGraficoComImposto";
 
 export default function CdbPreFixadoComponent() {
-  const [state, dispatch] = useReducer<React.Reducer<State, Action>>(cdbPreFixadoReducer, initialState);
+  const [state, dispatch] = useReducer(cdbPreFixadoReducer, initialState);
 
   const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);

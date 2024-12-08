@@ -19,7 +19,7 @@ export default function PoupancaComponent({ taxaCdi }: TaxasProps) {
     return taxaSelic <= 8.5 ? (taxaSelic * 0.7).toFixed(2) : "6.17"
   }, [taxaSelic]);
 
-  const [state, dispatch] = useReducer<React.Reducer<State, Action>>(poupancaReducer, {
+  const [state, dispatch] = useReducer(poupancaReducer, {
     ...initialState,
     taxaJurosAnual: parseFloat(taxaPoupanca),
   });
