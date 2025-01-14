@@ -10,10 +10,11 @@
     cursor: pointer;
     border-radius: 15px;
     transition: 200ms;
+    font-weight: 600;
 }
 
 .button-group button.active {
-    background-color: #007bff;
+    background-color: #0056B3;
     color: white;
     border: none;
 }
