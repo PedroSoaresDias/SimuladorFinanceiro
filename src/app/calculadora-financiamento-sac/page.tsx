@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useReducer, ChangeEvent } from "react";
-import { InputField } from "../../../Components/InputField";
+import InputField from "../../../Components/InputField";
 import { initialState, financiamentoSacReducer, Action } from "../reducers/financiamentoSacReducer";
 import { formatCurrency } from "../utils/financialCalculation";
 
@@ -25,18 +25,21 @@ export default function Financiamento() {
           value={state.emprestimo}
           onChange={handleChange("SET_EMPRESTIMO")}
           prefix="R$"
+          forId="valor-financiamento-sac"
         />
         <InputField
           label="Taxa de juros"
           value={state.taxaJurosAnual}
           onChange={handleChange("SET_TAXA_JUROS_ANUAL")}
           suffix="% ao ano"
+          forId="taxa-juros-financiamento-sac"
         />
         <InputField
           label="Prazo de Pagamento"
           value={state.prazoPagamento}
           onChange={handleChange("SET_PRAZO_PAGAMENTO")}
           suffix="meses"
+          forId="prazo-financiamento-sac"
         />
 
         <br />

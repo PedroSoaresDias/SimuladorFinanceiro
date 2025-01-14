@@ -33,4 +33,4 @@ const ResultadoGraficoComImposto: React.FC<ResultadoGraficoComImpostoProps> = ({
   return <Pie data={data} options={options} />;
 }
 
-export default ResultadoGraficoComImposto;
+export default React.memo(ResultadoGraficoComImposto);

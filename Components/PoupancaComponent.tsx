@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useReducer, ChangeEvent, useEffect, useMemo } from "react";
-import { InputField } from "./InputField";
+import InputField from "./InputField";
 import { initialState, poupancaReducer, State, Action } from "../src/app/reducers/poupancaReducer";
 import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
 import ResultadoJurosCompostos from "./ResultadoJurosCompostos";
@@ -42,10 +42,10 @@ export default function PoupancaComponent({ taxaCdi }: TaxasProps) {
 
         <br />
 
-        <InputField label={"Valor inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} />
-        <InputField label={"Valor mensal"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} />
-        <InputField label={"Rendimento da poupança"} value={state.taxaJurosAnual} readonly suffix={"% ao ano"} />
-        <InputField label={"Poupar por"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} />
+        <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} forId="capital-inicial-poupanca" />
+        <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} forId="aportes-mensais-poupanca" />
+        <InputField label={"Rendimento da poupança"} value={state.taxaJurosAnual} readonly suffix={"% ao ano"} forId="taxa-juros-poupanca"/>
+        <InputField label={"Poupar por"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} forId="periodo-poupanca" />
 
         <br />
 

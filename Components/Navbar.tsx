@@ -38,17 +38,17 @@ export default function Navbar() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item link" href={"/cdb"}>
+                  <Link className="dropdown-item link" href={"/calculadora-cdb"}>
                     CDB
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item link" href={"/LCI-LCA"}>
+                  <Link className="dropdown-item link" href={"/calculadora-lci-lca"}>
                     LCI/LCA
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item link" href={"/Poupanca"}>
+                  <Link className="dropdown-item link" href={"/calculadora-poupanca"}>
                     Poupança
                   </Link>
                 </li>
@@ -66,19 +66,19 @@ export default function Navbar() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item link" href={"/JurosCompostos"}>
+                  <Link className="dropdown-item link" href={"/calculadora-juros-compostos"}>
                     Juros Compostos
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item link" href={"/JurosSimples"}>
+                  <Link className="dropdown-item link" href={"/calculadora-juros-simples"}>
                     Juros Simples
                   </Link>
                 </li>
               </ul>
             </li>
             <li className="nav-item">
-              <Link className="nav-link link" href={"/Financiamento"}>
+              <Link className="nav-link link" href={"/calculadora-financiamento-sac"}>
                 Financiamento SAC
               </Link>
             </li>

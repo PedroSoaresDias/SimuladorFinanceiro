@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useReducer, ChangeEvent, useMemo } from "react";
-import { InputField } from "./InputField";
+import InputField from "./InputField";
 import { initialState, cdbPosFixadoReducer, Action } from "../src/app/reducers/cdbPosFixadoReducer";
 import ResultadoCdb from "./ResultadoCdb";
 import ResultadoGraficoComImposto from "./ResultadoGraficoComImposto";
@@ -30,10 +30,10 @@ const CdbPosFixadoComponent = ({ taxaCdi }: { taxaCdi: { valor: string } }) => {
       {taxaCdi && taxaCdi.valor !== undefined ? (
         <div>
           <p>Valor do CDI considerado {taxaCdi.valor}%</p>
-          <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} />
-          <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} />
-          <InputField label={"Porcentagem em CDI"} value={state.porcentagemCdi} onChange={handleChange("SET_PORCENTAGEM_CDI")} suffix={"CDI"} />
-          <InputField label={"Período"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} />
+          <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} forId="capital-inicial-cdb-pos" />
+          <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} forId="aportes-mensais-cdb-pos" />
+          <InputField label={"Porcentagem em CDI"} value={state.porcentagemCdi} onChange={handleChange("SET_PORCENTAGEM_CDI")} suffix={"CDI"} forId="porcentagem-cdi-cdb-pos" />
+          <InputField label={"Período"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} forId="periodo-" />
 
           <br />
 

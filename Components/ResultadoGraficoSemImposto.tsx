@@ -32,4 +32,4 @@ const ResultadoGraficoSemImposto: React.FC<ResultadoGraficoSemImpostoProps>  = (
   return <Pie data={data} options={options} />;
 }
 
-export default ResultadoGraficoSemImposto;
+export default React.memo(ResultadoGraficoSemImposto);

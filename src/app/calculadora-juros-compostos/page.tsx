@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useReducer, ChangeEvent } from "react";
-import { InputField } from "../../../Components/InputField";
+import InputField from "../../../Components/InputField";
 import ResultadoJurosCompostos from "../../../Components/ResultadoJurosCompostos";
 import { initialState, jurosCompostosReducer, Action } from "../reducers/jurosCompostosReducer";
 import ResultadoGraficoSemImposto from "../../../Components/ResultadoGraficoSemImposto";
@@ -21,10 +21,10 @@ const JurosCompostos: React.FC = () => {
           Calculadora de Juros Compostos
         </h2>
         <br />
-        <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} />
-        <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} />
-        <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} onChange={handleChange("SET_TAXA_JUROS_ANUAL")} suffix={"% ao ano"} />
-        <InputField label={"Período"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} />
+        <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} forId="capital-inicial-juros-compostos" />
+        <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} forId="aportes-mensais-juros-compostos" />
+        <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} onChange={handleChange("SET_TAXA_JUROS_ANUAL")} suffix={"% ao ano"} forId="taxa-juros-compostos" />
+        <InputField label={"Período"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} forId="periodo-juros-compostos" />
 
         <br />
 

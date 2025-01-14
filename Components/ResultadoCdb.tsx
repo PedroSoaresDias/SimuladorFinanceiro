@@ -2,7 +2,7 @@ import React from "react";
 import { calcularImposto, formatCurrency } from "../src/app/utils/financialCalculation";
 
 
-export default function ResultadoCdb({ capital, valorAporteMensal, periodo, resultado }) {
+function ResultadoCdb({ capital, valorAporteMensal, periodo, resultado }) {
   const totalInvestido = capital + valorAporteMensal * periodo;
   const totalJuros = resultado - totalInvestido;
   const valorImposto = calcularImposto(periodo, totalJuros);
@@ -19,3 +19,5 @@ export default function ResultadoCdb({ capital, valorAporteMensal, periodo, resu
     </div>
   );
 }
+
+export default React.memo(ResultadoCdb); 
