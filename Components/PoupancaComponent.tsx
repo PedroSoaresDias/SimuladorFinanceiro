@@ -2,9 +2,10 @@
 
 import React, { useReducer, ChangeEvent, useEffect, useMemo } from "react";
 import InputField from "./InputField";
-import { initialState, poupancaReducer, State, Action } from "../src/app/reducers/poupancaReducer";
+import { initialState, poupancaReducer, Action } from "../src/app/reducers/poupancaReducer";
 import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
 import ResultadoJurosCompostos from "./ResultadoJurosCompostos";
+import "../src/app/css/simulador.css"
 
 interface TaxasProps {
   taxaCdi: {

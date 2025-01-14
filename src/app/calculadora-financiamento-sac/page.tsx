@@ -4,6 +4,8 @@ import React, { useReducer, ChangeEvent } from "react";
 import InputField from "../../../Components/InputField";
 import { initialState, financiamentoSacReducer, Action } from "../reducers/financiamentoSacReducer";
 import { formatCurrency } from "../utils/financialCalculation";
+import "../css/simulador.css";
+import "../css/simulador-aviso.css";
 
 export default function Financiamento() {
   const [state, dispatch] = useReducer(financiamentoSacReducer, initialState);

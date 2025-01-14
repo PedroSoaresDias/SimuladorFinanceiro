@@ -1,0 +1,49 @@
+#inicio {
+    background: linear-gradient(270deg, rgba(62, 62, 16, 0.5), rgba(33, 61, 17, 0.5)), url("/Images/background-dinheiro.webp");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding-left: 3rem;
+    padding-right: 5rem;
+    transition: 0.7s;
+}
+
+#inicio h1 {
+    color: white;
+    font-size: 2rem;
+    font-weight: normal;
+    letter-spacing: 3px;
+}
+
+#inicio p {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: normal;
+    letter-spacing: 3px;
+}
+
+@media screen and (max-width: 500px) {
+    #inicio h1 {
+        font-size: 1.8rem;
+    }
+
+    #inicio p {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #inicio h1 {
+        font-size: 1.5rem;
+    }
+
+    #inicio p {
+        font-size: 1rem;
+    }
+}

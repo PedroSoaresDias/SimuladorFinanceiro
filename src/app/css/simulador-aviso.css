@@ -1,0 +1,10 @@
+.simulador .aviso {
+    background-color: rgba(214, 0, 0, 0.35);
+    border: 1px solid red;
+    color: black
+}
+
+.simulador .aviso p {
+    font-weight: 400;
+    font-size: 1rem;
+}

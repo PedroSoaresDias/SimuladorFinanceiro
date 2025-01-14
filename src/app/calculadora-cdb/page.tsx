@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import CdbPreFixadoComponent from "../../../Components/CdbPreFixadoComponent";
 import CdbPosFixadoComponent from "../../../Components/CdbPosFixadoComponent";
 import { getTaxaSelic } from "../services/data";
+import "../css/simulador.css";
+import "../css/button.css";
 
 export default function Cdb() {
   const [showCdbPreFixado, setShowCbdPreFixado] = useState(true);

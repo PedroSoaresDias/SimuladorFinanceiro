@@ -1,0 +1,13 @@
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(193, 193, 193);
+    padding: 1rem 0.5rem 0;
+}
+
+footer p {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: black;
+}

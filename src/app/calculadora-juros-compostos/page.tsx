@@ -5,6 +5,7 @@ import InputField from "../../../Components/InputField";
 import ResultadoJurosCompostos from "../../../Components/ResultadoJurosCompostos";
 import { initialState, jurosCompostosReducer, Action } from "../reducers/jurosCompostosReducer";
 import ResultadoGraficoSemImposto from "../../../Components/ResultadoGraficoSemImposto";
+import "../css/simulador.css";
 
 const JurosCompostos: React.FC = () => {
   const [state, dispatch] = useReducer(jurosCompostosReducer, initialState);

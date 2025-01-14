@@ -1,0 +1,25 @@
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: 200ms;
+}
+
+.button-group button.active {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.button-group button:not(.active) {
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid #ccc;
+}

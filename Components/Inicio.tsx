@@ -1,4 +1,5 @@
 import React from "react";
+import "../src/app/css/inicio.css"
 
 export default function Inicio() {
   return (

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import "../src/app/css/navbar.css"
 
 export default function Navbar() {
   return (

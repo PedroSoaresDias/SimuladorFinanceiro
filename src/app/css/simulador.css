@@ -1,0 +1,36 @@
+.simulador {
+    background-color: rgb(208, 208, 208);
+    min-height: 100vh;
+    padding: 2.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.simulador h2,
+.simulador label,
+.simulador h4,
+.simulador ul,
+.simulador p {
+    font-weight: 600;
+}
+
+@media screen and (max-width: 340px) {
+    .simulador h4 {
+        font-size: 1.2rem;
+    }
+
+    .simulador ul {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .simulador h4 {
+        font-size: 1rem;
+    }
+
+    .simulador ul {
+        font-size: 0.8rem;
+    }
+}

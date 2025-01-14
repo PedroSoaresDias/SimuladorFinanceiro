@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { getTaxaSelic } from "../services/data";
 import LciLcaPreFixadoComponent from "../../../Components/LciLcaPreFixadoComponent";
 import LciLcaPosFixadoComponent from "../../../Components/LciLcaPosFixadoComponent";
+import "../css/simulador.css";
+import "../css/button.css";
 
 export default function LciLca() {
   const [showLciLcaPreFixado, setShowLciLcaPreFixado] = useState(true);
