@@ -1,40 +1,10 @@
-"use client"
-
-import React, { useState, useEffect } from "react";
-import { getTaxaSelic } from "../services/data";
-import LciLcaPreFixadoComponent from "../../../Components/LciLcaPreFixadoComponent";
-import LciLcaPosFixadoComponent from "../../../Components/LciLcaPosFixadoComponent";
+import React from "react";
+import LciLcaComponent from "../../../Components/LciLcaComponent";
 import "../css/simulador.css";
-import "../css/button.css";
+import { getTaxaSelic } from "../services/data";
 
-export default function LciLca() {
-  const [showLciLcaPreFixado, setShowLciLcaPreFixado] = useState(true);
-  const [taxaCdi, setTaxaCdi] = useState<{ valor: string } | null>(null);
-  
-  useEffect(() => {
-    async function fetchTaxaCdi() {
-      const data = await getTaxaSelic();
-      if (data) {
-        setTaxaCdi(data);
-      } else {
-        console.error("Erro ao carregar a taxa Selic")
-      }
-    }
-
-    fetchTaxaCdi();
-
-    const intervalId = setInterval(fetchTaxaCdi, 3600 * 1000);
-
-    return () => clearInterval(intervalId);
-  }, [])
-
-  const toggleToLciLcaPreFixada = () => {
-    setShowLciLcaPreFixado(true);
-  }
-
-  const toggleToLciLcaPosFixada = () => {
-    setShowLciLcaPreFixado(false);
-  }
+export default async function LciLca() {
+  const taxaCdi = await getTaxaSelic();
 
   return (
     <section className="simulador">
@@ -43,7 +13,8 @@ export default function LciLca() {
           Calculadora de LCI e LCA
         </h2>
         <br />
-        <div className="button-group">
+        <LciLcaComponent taxaCdi={taxaCdi}/>
+        {/* <div className="button-group">
           <button
             className={showLciLcaPreFixado ? 'active' : ''}
             onClick={toggleToLciLcaPreFixada}
@@ -58,7 +29,7 @@ export default function LciLca() {
           </button>
         </div>
 
-        {showLciLcaPreFixado ? <LciLcaPreFixadoComponent /> : <LciLcaPosFixadoComponent taxaCdi={taxaCdi} />}
+        {showLciLcaPreFixado ? <LciLcaPreFixadoComponent /> : <LciLcaPosFixadoComponent taxaCdi={taxaCdi} />} */}
       </div>
     </section >
   );

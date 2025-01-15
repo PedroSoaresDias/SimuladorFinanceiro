@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-br">
       <body className={inter.className}>
         <Navbar />
-        {children}
+          {children}
         <Footer />
         <BootstrapClient />
       </body>
