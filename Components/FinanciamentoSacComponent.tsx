@@ -31,7 +31,7 @@ export default function FinanciamentoSacComponent() {
         forId="taxa-juros-financiamento-sac"
       />
       <InputField
-        label="Prazo de Pagamento"
+        label="Prazo de pagamento"
         value={state.prazoPagamento}
         onChange={handleChange("SET_prazoPagamento")}
         suffix="meses"

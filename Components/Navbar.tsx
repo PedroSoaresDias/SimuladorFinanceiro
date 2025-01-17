@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import "../src/app/css/navbar.css"
+import { deflate } from "zlib";
 
-export default function Navbar() {
+function Navbar() {
   return (
     <nav id="nav-bar" className="navbar navbar-expand-lg bg-body-tertiary text-start">
       <div className="container-fluid">
@@ -89,3 +90,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export default React.memo(Navbar);

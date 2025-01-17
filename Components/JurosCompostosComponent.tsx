@@ -19,7 +19,7 @@ const JurosCompostosComponent: React.FC = () => {
     <>
       <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("capital")} prefix={"R$"} forId="capital-inicial-juros-compostos" />
       <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("valorAporteMensal")} prefix={"R$"} forId="aportes-mensais-juros-compostos" />
-      <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} onChange={handleChange("taxaJurosAnual")} suffix={"% ao ano"} forId="taxa-juros-compostos" />
+      <InputField label={"Taxa de juros"} value={state.taxaJurosAnual} onChange={handleChange("taxaJurosAnual")} suffix={"% ao ano"} forId="taxa-juros-compostos" />
       <InputField label={"Período"} value={state.periodo} onChange={handleChange("periodo")} suffix={"meses"} forId="periodo-juros-compostos" />
 
       <br />

@@ -18,7 +18,7 @@ const JurosSimplesComponent: React.FC = () => {
   return (
     <>
       <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("capital")} prefix={"R$"} forId="capital-inicial-juros-simples" />
-      <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} onChange={handleChange("taxaJurosAnual")} suffix={"% ao ano"} forId="taxa-juros-simples" />
+      <InputField label={"Taxa de juros"} value={state.taxaJurosAnual} onChange={handleChange("taxaJurosAnual")} suffix={"% ao ano"} forId="taxa-juros-simples" />
       <InputField label={"Período"} value={state.periodo} onChange={handleChange("periodo")} suffix={"anos"} forId="periodo-juros-simples" />
       <br />
 

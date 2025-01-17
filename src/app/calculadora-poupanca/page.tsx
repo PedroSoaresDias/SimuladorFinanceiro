@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { getTaxaSelic } from '../services/data';
+import "../css/simulador.css"
 
 const PoupancaComponent = lazy(() => import("../../../Components/PoupancaComponent"))
 
