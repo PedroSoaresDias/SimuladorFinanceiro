@@ -1,25 +1,26 @@
 "use client"
 
-import React, { useReducer, ChangeEvent } from "react";
-import InputField from "./InputField";
-import { initialState, lcilcaPreFixadoReducer, Action } from "../src/app/reducers/lcilcaPreFixadoReducer";
-import ResultadoLciLca from "./ResultadoLciLca";
-import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
+import React, { useReducer, ChangeEvent, lazy, useCallback, Suspense } from "react";
+import { initialState, lcilcaPreFixadoReducer } from "../src/app/reducers/lcilcaPreFixadoReducer";
+
+const InputField = lazy(() => import("./InputField"));
+const ResultadoLciLca = lazy(() => import("./ResultadoLciLca"));
+const ResultadoGraficoSemImposto = lazy(() => import("./ResultadoGraficoSemImposto"));
 
 export default function LciLcaPreFixadoComponent() {
   const [state, dispatch] = useReducer(lcilcaPreFixadoReducer, initialState);
 
-  const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((field: keyof typeof initialState) => (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);
-    dispatch({ type, payload: value });
-  };
+    dispatch({ type: "SET_FIELD", field, value });
+  }, []);
 
   return (
     <>
-      <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} forId="capital-inicial-lci-lca-pre" />
-      <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} forId="aportes-mensais-lci-lca-pre" />
-      <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} onChange={handleChange("SET_TAXA_JUROS_ANUAL")} suffix={"% ao ano"} forId="taxa-juros-lci-lca-pre" />
-      <InputField label={"Período"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} forId="periodo-lci-lca-pre" />
+      <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("capital")} prefix={"R$"} forId="capital-inicial-lci-lca-pre" />
+      <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("valorAporteMensal")} prefix={"R$"} forId="aportes-mensais-lci-lca-pre" />
+      <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} onChange={handleChange("taxaJurosAnual")} suffix={"% ao ano"} forId="taxa-juros-lci-lca-pre" />
+      <InputField label={"Período"} value={state.periodo} onChange={handleChange("periodo")} suffix={"meses"} forId="periodo-lci-lca-pre" />
 
       <br />
 
@@ -29,13 +30,15 @@ export default function LciLcaPreFixadoComponent() {
 
       <br />
 
-      {state.resultado > 0 && (
-        <div>
-          <ResultadoGraficoSemImposto totalInvestido={state.totalInvestido} juros={state.juros} />
-          <br />
-          <ResultadoLciLca capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
-        </div>
-      )}
+      <Suspense fallback={<div className="text-center">Loading...</div>}>
+        {state.resultado > 0 && (
+          <div>
+            <ResultadoGraficoSemImposto totalInvestido={state.totalInvestido} juros={state.juros} />
+            <br />
+            <ResultadoLciLca capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
+          </div>
+        )}
+      </Suspense>
     </>
   );
 }

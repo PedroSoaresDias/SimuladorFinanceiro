@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useReducer, ChangeEvent, useEffect, useMemo } from "react";
-import InputField from "./InputField";
-import { initialState, poupancaReducer, Action } from "../src/app/reducers/poupancaReducer";
-import ResultadoGraficoSemImposto from "./ResultadoGraficoSemImposto";
-import ResultadoJurosCompostos from "./ResultadoJurosCompostos";
-import "../src/app/css/simulador.css"
+import React, { useReducer, ChangeEvent, useEffect, useMemo, useCallback, lazy, Suspense } from "react";
+import { initialState, poupancaReducer } from "../src/app/reducers/poupancaReducer";
+
+const InputField = lazy(() => import("./InputField"));
+const ResultadoGraficoSemImposto = lazy(() => import("./ResultadoGraficoSemImposto"));
+const ResultadoJurosCompostos = lazy(() => import("./ResultadoJurosCompostos"));
 
 interface TaxasProps {
   taxaCdi: {
@@ -15,7 +15,7 @@ interface TaxasProps {
 
 export default function PoupancaComponent({ taxaCdi }: TaxasProps) {
   const taxaSelic = useMemo(() => parseFloat(taxaCdi.valor) + 0.10, [taxaCdi]);
-  
+
   const taxaPoupanca = useMemo(() => {
     return taxaSelic <= 8.5 ? (taxaSelic * 0.7).toFixed(2) : "6.17"
   }, [taxaSelic]);
@@ -26,36 +26,30 @@ export default function PoupancaComponent({ taxaCdi }: TaxasProps) {
   });
 
   useEffect(() => {
-    dispatch({ type: "SET_TAXA_JUROS_ANUAL", payload: parseFloat(taxaPoupanca) });
+    dispatch({ type: "SET_FIELD", field: "taxaJurosAnual", value: parseFloat(taxaPoupanca) });
   }, [taxaPoupanca]);
 
-  const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((field: keyof typeof initialState) => (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);
-    dispatch({ type, payload: value });
-  };
+    dispatch({ type: "SET_FIELD", field, value });
+  }, []);
 
   return (
-    <section className="simulador">
-      <div className="container">
-        <h2 className="text-center text-dark">
-          Calculadora de Rendimento da Poupança
-        </h2>
+    <>
+      <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("capital")} prefix={"R$"} forId="capital-inicial-poupanca" />
+      <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("valorAporteMensal")} prefix={"R$"} forId="aportes-mensais-poupanca" />
+      <InputField label={"Rendimento da poupança"} value={state.taxaJurosAnual} readonly suffix={"% ao ano"} forId="taxa-juros-poupanca" />
+      <InputField label={"Poupar por"} value={state.periodo} onChange={handleChange("periodo")} suffix={"meses"} forId="periodo-poupanca" />
 
-        <br />
+      <br />
 
-        <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} forId="capital-inicial-poupanca" />
-        <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} forId="aportes-mensais-poupanca" />
-        <InputField label={"Rendimento da poupança"} value={state.taxaJurosAnual} readonly suffix={"% ao ano"} forId="taxa-juros-poupanca"/>
-        <InputField label={"Poupar por"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} forId="periodo-poupanca" />
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-success col-6" onClick={() => dispatch({ type: "CALCULAR_RESULTADO" })}>Calcular</button>
+      </div>
 
-        <br />
+      <br />
 
-        <div className="d-flex justify-content-center">
-          <button className="btn btn-success col-6" onClick={() => dispatch({ type: "CALCULAR_RESULTADO" })}>Calcular</button>
-        </div>
-
-        <br />
-        
+      <Suspense fallback={<div className="text-center">Loading...</div>}>
         {state.resultado > 0 && (
           <div>
             <ResultadoGraficoSemImposto totalInvestido={state.totalInvestido} juros={state.juros} />
@@ -63,7 +57,7 @@ export default function PoupancaComponent({ taxaCdi }: TaxasProps) {
             <ResultadoJurosCompostos capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
           </div>
         )}
-      </div>
-    </section >
+      </Suspense>
+    </>
   );
 }

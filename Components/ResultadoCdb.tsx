@@ -1,8 +1,14 @@
 import React from "react";
 import { calcularImposto, formatCurrency } from "../src/app/utils/financialCalculation";
 
+interface ResultadoCdbProps {
+  capital: number;
+  valorAporteMensal: number;
+  periodo: number;
+  resultado: number;
+}
 
-function ResultadoCdb({ capital, valorAporteMensal, periodo, resultado }) {
+const ResultadoCdb: React.FC<ResultadoCdbProps> = ({ capital, valorAporteMensal, periodo, resultado }) => {
   const totalInvestido = capital + valorAporteMensal * periodo;
   const totalJuros = resultado - totalInvestido;
   const valorImposto = calcularImposto(periodo, totalJuros);

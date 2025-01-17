@@ -1,25 +1,26 @@
 "use client"
 
-import React, { useReducer, ChangeEvent } from "react";
-import InputField from "./InputField";
-import { initialState, cdbPreFixadoReducer, Action } from "../src/app/reducers/cdbPreFixadoReducer";
-import ResultadoCdb from "./ResultadoCdb";
-import ResultadoGraficoComImposto from "./ResultadoGraficoComImposto";
+import React, { useReducer, ChangeEvent, lazy, useCallback, Suspense } from "react";
+import { initialState, cdbPreFixadoReducer } from "../src/app/reducers/cdbPreFixadoReducer";
+
+const InputField = lazy(() => import("./InputField"));
+const ResultadoCdb = lazy(() => import("./ResultadoCdb"));
+const ResultadoGraficoComImposto = lazy(() => import("./ResultadoGraficoComImposto"));
 
 export default function CdbPreFixadoComponent() {
   const [state, dispatch] = useReducer(cdbPreFixadoReducer, initialState);
 
-  const handleChange = (type: Action["type"]) => (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((field: keyof typeof initialState) => (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);
-    dispatch({ type, payload: value });
-  };
+    dispatch({ type: "SET_FIELD", field, value });
+  }, []);
 
   return (
     <>
-      <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("SET_CAPITAL")} prefix={"R$"} forId="capital-inicial-cdb-pre" />
-      <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("SET_VALOR_APORTE_MENSAL")} prefix={"R$"} forId="aportes-mensais-cdb-pre" />
-      <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} onChange={handleChange("SET_TAXA_JUROS_ANUAL")} suffix={"% ao ano"} forId="taxa-juros-cdb-pre" />
-      <InputField label={"Período"} value={state.periodo} onChange={handleChange("SET_PERIODO")} suffix={"meses"} forId="periodo-cdb-pre" />
+      <InputField label={"Capital inicial"} value={state.capital} onChange={handleChange("capital")} prefix={"R$"} forId="capital-inicial-cdb-pre" />
+      <InputField label={"Aportes mensais"} value={state.valorAporteMensal} onChange={handleChange("valorAporteMensal")} prefix={"R$"} forId="aportes-mensais-cdb-pre" />
+      <InputField label={"Taxa de Juros"} value={state.taxaJurosAnual} onChange={handleChange("taxaJurosAnual")} suffix={"% ao ano"} forId="taxa-juros-cdb-pre" />
+      <InputField label={"Período"} value={state.periodo} onChange={handleChange("periodo")} suffix={"meses"} forId="periodo-cdb-pre" />
 
       <br />
 
@@ -29,13 +30,15 @@ export default function CdbPreFixadoComponent() {
 
       <br />
 
-      {state.resultado > 0 && (
-        <div>
-          <ResultadoGraficoComImposto totalInvestido={state.totalInvestido} juros={state.juros} imposto={state.imposto} />
-          <br />
-          <ResultadoCdb capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
-        </div>
-      )}
+      <Suspense fallback={<div className="text-center">Loading...</div>}>
+        {state.resultado > 0 && (
+          <div>
+            <ResultadoGraficoComImposto totalInvestido={state.totalInvestido} juros={state.juros} imposto={state.imposto} />
+            <br />
+            <ResultadoCdb capital={state.capital} valorAporteMensal={state.valorAporteMensal} periodo={state.periodo} resultado={state.resultado} />
+          </div>
+        )}
+      </Suspense>
     </>
   );
 }

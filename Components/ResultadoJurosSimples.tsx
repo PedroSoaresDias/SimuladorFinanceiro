@@ -1,7 +1,12 @@
 import React from "react";
 import { formatCurrency } from "../src/app/utils/financialCalculation";
 
-function ResultadoJurosSimples({ capital, resultado }) {
+interface ResultadoJurosSimplesProps {
+  capital: number;
+  resultado: number;
+}
+
+const ResultadoJurosSimples: React.FC<ResultadoJurosSimplesProps> = ({ capital, resultado }) => {
   return (
     <div className="text-center">
       <p>Capital inicial: {formatCurrency(capital)}</p>

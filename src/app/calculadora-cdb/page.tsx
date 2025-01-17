@@ -1,7 +1,8 @@
-import React from "react";
-import CdbComponent from "../../../Components/CdbComponent";
+import React, { lazy } from "react";
 import { getTaxaSelic } from "../services/data";
 import "../css/simulador.css";
+
+const CdbComponent = lazy(() => import("../../../Components/CdbComponent"))
 
 export default async function Cdb() {
   const taxaCdi = await getTaxaSelic();

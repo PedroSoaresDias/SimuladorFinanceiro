@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState } from "react"
-import LciLcaPreFixadoComponent from "./LciLcaPreFixadoComponent";
-import LciLcaPosFixadoComponent from "./LciLcaPosFixadoComponent";
+import React, { useState, lazy } from "react"
 import "../src/app/css/button.css";
+
+const LciLcaPosFixadoComponent = lazy(() => import("./LciLcaPosFixadoComponent"));
+const LciLcaPreFixadoComponent = lazy(() => import("./LciLcaPreFixadoComponent"));
 
 export default function LciLcaComponent({ taxaCdi }) {
   const [showLciLcaPreFixado, setShowLciLcaPreFixado] = useState(true);

@@ -1,7 +1,14 @@
 import React from "react";
 import { formatCurrency } from "../src/app/utils/financialCalculation";
 
-function ResultadoJurosCompostos({ capital, valorAporteMensal, periodo, resultado }) {
+interface ResultadoJurosCompostosProps {
+  capital: number;
+  valorAporteMensal: number;
+  periodo: number;
+  resultado: number;
+}
+
+const ResultadoJurosCompostos: React.FC<ResultadoJurosCompostosProps> = ({ capital, valorAporteMensal, periodo, resultado }) => {
   const totalInvestido = capital + valorAporteMensal * periodo;
   const totalJuros = resultado - totalInvestido;
 

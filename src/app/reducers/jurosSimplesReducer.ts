@@ -19,19 +19,13 @@ export const initialState: State = {
 };
 
 export type Action =
-  | { type: "SET_CAPITAL"; payload: number }
-  | { type: "SET_TAXA_JUROS_ANUAL"; payload: number }
-  | { type: "SET_PERIODO"; payload: number }
+  | { type: "SET_FIELD"; field: keyof State; value: number }
   | { type: "CALCULAR_RESULTADO" };
 
 export function jurosSimplesReducer(state: State, action: Action) {
   switch (action.type) {
-    case "SET_CAPITAL":
-      return { ...state, capital: action.payload };
-    case "SET_TAXA_JUROS_ANUAL":
-      return { ...state, taxaJurosAnual: action.payload };
-    case "SET_PERIODO":
-      return { ...state, periodo: action.payload };
+    case "SET_FIELD":
+      return { ...state, [action.field]: action.value };
     case "CALCULAR_RESULTADO":
       const resultado = calcularJurosSimples(state.capital, state.taxaJurosAnual, state.periodo);
       const juros = resultado - state.capital;

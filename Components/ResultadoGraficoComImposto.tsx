@@ -4,13 +4,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-interface ResultadoGraficoComImpostoProps {
+interface ResultadoGraficoProps {
   totalInvestido: number;
   juros: number;
   imposto: number;
 }
 
-const ResultadoGraficoComImposto: React.FC<ResultadoGraficoComImpostoProps> = ({ totalInvestido, juros, imposto }) => {
+const ResultadoGraficoComImposto: React.FC<ResultadoGraficoProps> = ({ totalInvestido, juros, imposto }) => {
   const data = {
     labels: ["Total Investido", "Juros", "Imposto"],
     datasets: [

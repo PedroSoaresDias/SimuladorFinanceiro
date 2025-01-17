@@ -1,7 +1,8 @@
-import React from "react";
-import LciLcaComponent from "../../../Components/LciLcaComponent";
+import React, { lazy } from "react";
 import "../css/simulador.css";
 import { getTaxaSelic } from "../services/data";
+
+const LciLcaComponent = lazy(() => import("../../../Components/LciLcaComponent"))
 
 export default async function LciLca() {
   const taxaCdi = await getTaxaSelic();
@@ -14,22 +15,6 @@ export default async function LciLca() {
         </h2>
         <br />
         <LciLcaComponent taxaCdi={taxaCdi}/>
-        {/* <div className="button-group">
-          <button
-            className={showLciLcaPreFixado ? 'active' : ''}
-            onClick={toggleToLciLcaPreFixada}
-          >
-            Pré Fixado
-          </button>
-          <button
-            className={!showLciLcaPreFixado ? 'active' : ''}
-            onClick={toggleToLciLcaPosFixada}
-          >
-            Pós Fixado
-          </button>
-        </div>
-
-        {showLciLcaPreFixado ? <LciLcaPreFixadoComponent /> : <LciLcaPosFixadoComponent taxaCdi={taxaCdi} />} */}
       </div>
     </section >
   );

@@ -1,7 +1,14 @@
 import React from "react";
 import { formatCurrency } from "../src/app/utils/financialCalculation";
 
-function ResultadoLciLca({ capital, valorAporteMensal, periodo, resultado }) {
+interface ResultadoLciLcaProps {
+  capital: number;
+  valorAporteMensal: number;
+  periodo: number;
+  resultado: number;
+}
+
+const ResultadoLciLca: React.FC<ResultadoLciLcaProps> = ({ capital, valorAporteMensal, periodo, resultado }) => {
   const totalInvestido = capital + valorAporteMensal * periodo;
   const totalJuros = resultado - totalInvestido;
 

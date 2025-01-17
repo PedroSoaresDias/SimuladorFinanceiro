@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState } from "react"
-import CdbPreFixadoComponent from "./CdbPreFixadoComponent";
-import CdbPosFixadoComponent from "./CdbPosFixadoComponent";
+import React, { useState, lazy } from "react"
 import "../src/app/css/button.css";
+
+const CdbPosFixadoComponent = lazy(() => import("./CdbPosFixadoComponent"));
+const CdbPreFixadoComponent = lazy(() => import("./CdbPreFixadoComponent"));
 
 export default function CdbComponent({ taxaCdi }) {
   const [showCdbPreFixado, setShowCbdPreFixado] = useState(true);
