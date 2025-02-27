@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "chart.js": "^4.4.7",
-    "next": "^15.1.5",
+    "chart.js": "^4.4.8",
+    "next": "^15.2.0",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.10.5",
-    "@types/react": "^19.0.5",
-    "@types/react-dom": "^19.0.3",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
     "typescript": "^5.7.3"
   }
 }
